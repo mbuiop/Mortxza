@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فرم ثبت سایت</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+        }
+        
+        .form-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-header h1 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: 500;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, textarea:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-card">
+            <div class="form-header">
+                <h1>ثبت سایت جدید</h1>
+            </div>
+            
+            <form id="site-form">
+                <div class="form-group">
+                    <label for="site-url">لینک سایت</label>
+                    <input type="url" id="site-url" name="site-url" required placeholder="https://example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="site-name">اسم سایت</label>
+                    <input type="text" id="site-name" name="site-name" required placeholder="نام سایت شما">
+                </div>
+                
+                <div class="form-group">
+                    <label for="site-description">توضیح سایت</label>
+                    <textarea id="site-description" name="site-description" required placeholder="توضیحات درباره سایت"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">ایمیل</label>
+                    <input type="email" id="email" name="email" required placeholder="example@email.com">
+                </div>
+                
+                <button type="submit" class="submit-btn">ثبت سایت</button>
+            </form>
+            
+            <div id="success-message" class="success-message">
+                سایت ثبت شد. پس از تایید در لیست آگهی‌ها قرار می‌گیرد.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('site-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // در اینجا معمولاً اطلاعات به سرور ارسال می‌شود
+            // برای نمایشی بودن، فقط پیام موفقیت را نشان می‌دهیم
+            
+            // مخفی کردن فرم
+            document.getElementById('site-form').style.display = 'none';
+            
+            // نمایش پیام موفقیت
+            const successMessage = document.getElementById('success-message');
+            successMessage.style.display = 'block';
+            
+            // ریست کردن فرم (اختیاری)
+            this.reset();
+        });
+    </script>
+</body>
+</html>
