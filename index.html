@@ -703,73 +703,10 @@
             transition: width 0.3s;
         }
         
-        /* تنظیمات کیفیت */
-        .quality-controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .quality-btn {
-            padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: #a0c8ff;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.85rem;
-        }
-        
-        .quality-btn.active {
-            background: rgba(78, 205, 196, 0.2);
-            color: #4ecdc4;
-            border-color: #4ecdc4;
-        }
-        
-        .quality-btn:hover:not(.active) {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
         @media (max-width: 768px) {
             textarea, select, input, button {
                 font-size: 16px !important;
             }
-        }
-        
-        .text-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .text-toggle {
-            padding: 8px 15px;
-            background: rgba(255, 107, 107, 0.1);
-            border: 1px solid rgba(255, 107, 107, 0.3);
-            border-radius: 8px;
-            color: #ff6b6b;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-        
-        .text-toggle.active {
-            background: rgba(78, 205, 196, 0.2);
-            color: #4ecdc4;
-            border-color: #4ecdc4;
-        }
-        
-        .text-toggle:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .text-hint {
-            font-size: 0.8rem;
-            color: #a0c8ff;
-            margin-top: 5px;
         }
     </style>
 </head>
@@ -792,10 +729,6 @@
                     <i class="fas fa-sliders-h" style="color: #ffd93d;"></i>
                     اسلایدشو
                 </div>
-                <div class="social-badge">
-                    <i class="fas fa-hd" style="color: #45b7d1;"></i>
-                    کیفیت 4K
-                </div>
             </div>
         </header>
         
@@ -803,21 +736,21 @@
             <section class="input-section">
                 <h2 class="section-title"><i class="fas fa-edit"></i> متن و تنظیمات</h2>
                 
-                <textarea id="textInput" placeholder="متن خود را اینجا وارد کنید یا خالی بگذارید..."></textarea>
-                
-                <div class="text-controls">
-                    <button class="text-toggle active" id="textToggle">
-                        <i class="fas fa-font"></i> نمایش متن در ویدیو
-                    </button>
-                    <span class="text-hint">اگر متن وارد نکنید، فقط عکس‌ها نمایش داده می‌شوند</span>
-                </div>
+                <textarea id="textInput" placeholder="متن خود را اینجا وارد کنید...">🐘 حیات وحش شگفت‌انگیز 🦁
+
+طبیعت پر از زیبایی‌های حیرت‌انگیز است:
+• فیل‌های باشکوه در آفریقا
+• شیرهای قدرتمند در ساوانا
+• پاندای دوست‌داشتنی در جنگل
+• دلفین‌های بازیگوش در اقیانوس
+
+حفاظت از حیات وحش وظیفه همه ماست!</textarea>
                 
                 <div class="controls">
                     <div class="control-group">
                         <label for="fontSize"><i class="fas fa-text-height"></i> اندازه فونت</label>
                         <select id="fontSize">
-                            <option value="48">خیلی بزرگ</option>
-                            <option value="42">بزرگ</option>
+                            <option value="40">بزرگ</option>
                             <option value="36" selected>متوسط</option>
                             <option value="32">کوچک</option>
                             <option value="28">خیلی کوچک</option>
@@ -833,8 +766,6 @@
                             <option value="#45b7d1">آبی آسمانی</option>
                             <option value="#96ceb4">سبز</option>
                             <option value="#ffd93d">زرد</option>
-                            <option value="#ff9ff3">صورتی</option>
-                            <option value="#feca57">طلایی</option>
                         </select>
                     </div>
                     
@@ -844,39 +775,15 @@
                             <option value="shadow" selected>سایه دار</option>
                             <option value="glow">درخشان</option>
                             <option value="gradient">گرادیان</option>
-                            <option value="outline">حاشیه دار</option>
-                            <option value="3d">سه بعدی</option>
+                            <option value="simple">ساده</option>
                         </select>
                     </div>
                     
                     <div class="control-group">
                         <label for="duration"><i class="fas fa-clock"></i> مدت ویدیو (ثانیه)</label>
                         <div class="duration-control">
-                            <input type="range" id="duration" min="5" max="600" value="15" step="1">
-                            <span class="duration-value" id="durationValue">15</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- بخش کیفیت -->
-                <div class="slideshow-controls">
-                    <h3 class="slideshow-title"><i class="fas fa-hd"></i> تنظیمات کیفیت ویدیو</h3>
-                    
-                    <div class="quality-controls">
-                        <button class="quality-btn active" data-quality="720">HD 720p</button>
-                        <button class="quality-btn" data-quality="1080">Full HD 1080p</button>
-                        <button class="quality-btn" data-quality="1440">2K 1440p</button>
-                        <button class="quality-btn" data-quality="2160">4K 2160p</button>
-                    </div>
-                    
-                    <div class="slideshow-sliders" style="margin-top: 15px;">
-                        <div class="slider-group">
-                            <label for="fpsRate">فریم بر ثانیه:</label>
-                            <select id="fpsRate">
-                                <option value="24">24 FPS (فیلمی)</option>
-                                <option value="30" selected>30 FPS (استاندارد)</option>
-                                <option value="60">60 FPS (نرم)</option>
-                            </select>
+                            <input type="range" id="duration" min="5" max="600" value="10" step="1">
+                            <span class="duration-value" id="durationValue">10</span>
                         </div>
                     </div>
                 </div>
@@ -898,7 +805,6 @@
                                 <option value="fade">محو شدن</option>
                                 <option value="slide" selected>لغزش</option>
                                 <option value="zoom">زوم</option>
-                                <option value="pan">حرکت</option>
                                 <option value="none">بدون افکت</option>
                             </select>
                         </div>
@@ -996,7 +902,6 @@
                 <div class="loading" id="loadingIndicator">
                     <div class="loading-spinner"></div>
                     <p id="loadingText">در حال ساخت ویدیو حرفه‌ای...</p>
-                    <p id="loadingDetails">لطفا صبر کنید...</p>
                 </div>
             </section>
             
@@ -1004,8 +909,8 @@
                 <h2 class="section-title"><i class="fas fa-eye"></i> پیش‌نمایش ویدیو</h2>
                 
                 <div class="video-container">
-                    <canvas id="videoCanvas" width="1920" height="1080"></canvas>
-                    <div class="timer" id="timer">00:00 / 00:15</div>
+                    <canvas id="videoCanvas" width="800" height="450"></canvas>
+                    <div class="timer" id="timer">00:00 / 00:10</div>
                     
                     <div id="canvasPlaceholder">
                         <p style="color: #aaa; font-size: 1rem; text-align: center; padding: 20px;">
@@ -1016,8 +921,7 @@
                 </div>
                 
                 <div class="instructions">
-                    <p><i class="fas fa-info-circle"></i> کیفیت ویدیو: تا 4K • حداکثر مدت: 10 دقیقه • با صدا • فرمت: MP4</p>
-                    <p><i class="fas fa-exclamation-triangle"></i> هرچه کیفیت بالاتر باشد، زمان ساخت بیشتر طول می‌کشد</p>
+                    <p><i class="fas fa-info-circle"></i> کیفیت ویدیو: HD 1080p • حداکثر مدت: 10 دقیقه • با صدا • فرمت: MP4</p>
                 </div>
             </section>
         </div>
@@ -1025,15 +929,15 @@
         <section class="info-section">
             <h3 class="info-title"><i class="fas fa-lightbulb"></i> راهنمای کامل ساخت ویدیو حرفه‌ای</h3>
             <ul class="info-list">
-                <li><strong>متن دلخواه (اختیاری):</strong> اگر می‌خواهید متن در ویدیو نمایش داده شود، آن را تایپ کنید</li>
-                <li><strong>تنظیم کیفیت:</strong> کیفیت ویدیو را از 720p تا 4K انتخاب کنید</li>
+                <li><strong>متن جذاب بنویسید:</strong> از متن نمونه حیات وحش استفاده کنید یا متن خود را بنویسید</li>
                 <li><strong>آپلود چند عکس:</strong> تا 20 عکس آپلود کنید تا اسلایدشو بسازید</li>
                 <li><strong>تنظیم مدت زمان:</strong> با اسلایدر مدت ویدیو را از 5 تا 600 ثانیه تنظیم کنید</li>
                 <li><strong>انتخاب پس‌زمینه:</strong> از 50 عکس واقعی حیوانات و طبیعت انتخاب کنید یا عکس خود را آپلود کنید</li>
                 <li><strong>افزودن صدا (اختیاری):</strong> فایل صوتی MP3, WAV یا OGG آپلود کنید تا روی ویدیو پخش شود</li>
                 <li><strong>تنظیمات متن:</strong> اندازه، رنگ و افکت متن را تنظیم کنید</li>
                 <li><strong>ایجاد ویدیو:</strong> روی دکمه "ایجاد ویدیو" کلیک کنید تا ویدیو با صدا ساخته شود</li>
-                <li><strong>دانلود:</strong> ویدیوی نهایی را با کیفیت انتخابی دانلود کنید</li>
+                <li><strong>دانلود:</strong> ویدیوی نهایی را با کیفیت HD و صدای ضبط شده دانلود کنید</li>
+                <li><strong>اشتراک‌گذاری:</strong> ویدیو را در شبکه‌های اجتماعی مانند اینستاگرام، تلگرام و... منتشر کنید</li>
             </ul>
         </section>
     </div>
@@ -1041,7 +945,6 @@
     <script>
         // عناصر DOM
         const textInput = document.getElementById('textInput');
-        const textToggle = document.getElementById('textToggle');
         const fontSizeSelect = document.getElementById('fontSize');
         const textColorSelect = document.getElementById('textColor');
         const textEffectSelect = document.getElementById('textEffect');
@@ -1053,7 +956,6 @@
         const timer = document.getElementById('timer');
         const loadingIndicator = document.getElementById('loadingIndicator');
         const loadingText = document.getElementById('loadingText');
-        const loadingDetails = document.getElementById('loadingDetails');
         const canvasPlaceholder = document.getElementById('canvasPlaceholder');
         const backgroundGallery = document.getElementById('backgroundGallery');
         const selectedBgInfo = document.getElementById('selectedBgInfo');
@@ -1067,10 +969,6 @@
         const transitionEffectSelect = document.getElementById('transitionEffect');
         const progressBarContainer = document.getElementById('progressBarContainer');
         const progressFill = document.getElementById('progressFill');
-        
-        // عناصر کیفیت
-        const qualityBtns = document.querySelectorAll('.quality-btn');
-        const fpsRateSelect = document.getElementById('fpsRate');
         
         // عناصر آپلود
         const uploadInput = document.getElementById('uploadInput');
@@ -1098,7 +996,7 @@
         let recordedChunks = [];
         let startTime = null;
         let isGenerating = false;
-        let ctx = videoCanvas.getContext('2d', { alpha: false });
+        let ctx = videoCanvas.getContext('2d');
         let selectedBackground = null;
         let backgroundImages = [];
         let loadedImages = 0;
@@ -1110,19 +1008,16 @@
         let audioBuffer = null;
         let audioSource = null;
         
-        // متغیرهای جدید
+        // متغیرهای جدید برای اسلایدشو
         let uploadedMultipleImages = [];
         let currentSlideIndex = 0;
         let slideStartTime = 0;
         let isSlideshowMode = false;
-        let showTextInVideo = true;
-        let videoQuality = 1080;
-        let fpsRate = 30;
         
         // تنظیمات اولیه
         videoCanvas.style.display = 'none';
         
-        // لیست ۵۰ عکس واقعی از طبیعت و حیوانات
+        // لیست ۵۰ عکس واقعی از طبیعت و حیوانات (لینک‌های واقعی)
         const realNatureBackgrounds = [
             "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1551085254-e96b210db58a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -1180,68 +1075,20 @@
         durationSlider.addEventListener('input', function() {
             const value = parseInt(this.value);
             durationValue.textContent = value;
-            updateTimerDisplay(0, value);
+            
+            if (value >= 60) {
+                const minutes = Math.floor(value / 60);
+                const seconds = value % 60;
+                updateTimerDisplay(0, value);
+            } else {
+                updateTimerDisplay(0, value);
+            }
         });
         
         // اسلایدر مدت انتقال
         transitionDurationSlider.addEventListener('input', function() {
             const value = parseFloat(this.value);
             transitionDurationValue.textContent = value + ' ثانیه';
-        });
-        
-        // کنترل کیفیت
-        qualityBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                qualityBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                videoQuality = parseInt(this.dataset.quality);
-                
-                // تنظیم کیفیت کانواس
-                setCanvasQuality(videoQuality);
-            });
-        });
-        
-        // تنظیم کیفیت کانواس
-        function setCanvasQuality(quality) {
-            let width, height;
-            
-            switch(quality) {
-                case 720:
-                    width = 1280;
-                    height = 720;
-                    break;
-                case 1080:
-                    width = 1920;
-                    height = 1080;
-                    break;
-                case 1440:
-                    width = 2560;
-                    height = 1440;
-                    break;
-                case 2160:
-                    width = 3840;
-                    height = 2160;
-                    break;
-                default:
-                    width = 1920;
-                    height = 1080;
-            }
-            
-            videoCanvas.width = width;
-            videoCanvas.height = height;
-            videoCanvas.style.width = '100%';
-            videoCanvas.style.height = 'auto';
-        }
-        
-        // کنترل نمایش متن
-        textToggle.addEventListener('click', function() {
-            showTextInVideo = !showTextInVideo;
-            this.classList.toggle('active');
-            if (showTextInVideo) {
-                this.innerHTML = '<i class="fas fa-font"></i> نمایش متن در ویدیو';
-            } else {
-                this.innerHTML = '<i class="fas fa-eye-slash"></i> مخفی کردن متن در ویدیو';
-            }
         });
         
         // آپلود چند عکس
@@ -1258,6 +1105,7 @@
                 return;
             }
             
+            // بررسی حجم فایل‌ها
             for (const file of files) {
                 if (file.size > 5 * 1024 * 1024) {
                     alert(`فایل ${file.name} بیش از ۵ مگابایت است`);
@@ -1265,6 +1113,7 @@
                 }
             }
             
+            // پاک کردن عکس‌های قبلی اگر تعداد جدید بیش از حد باشد
             if (uploadedMultipleImages.length + files.length > maxFiles) {
                 const confirmDelete = confirm(`شما ${uploadedMultipleImages.length} عکس دارید. آیا می‌خواهید عکس‌های قبلی حذف شوند؟`);
                 if (confirmDelete) {
@@ -1275,6 +1124,7 @@
                 }
             }
             
+            // آپلود عکس‌ها
             for (const file of files) {
                 try {
                     const img = await loadImage(file);
@@ -1290,8 +1140,10 @@
                 }
             }
             
+            // فعال کردن حالت اسلایدشو
             isSlideshowMode = uploadedMultipleImages.length > 0;
             
+            // به‌روزرسانی وضعیت
             if (isSlideshowMode) {
                 selectedBgInfo.innerHTML = `<i class="fas fa-sliders-h"></i> حالت اسلایدشو فعال (${uploadedMultipleImages.length} عکس)`;
                 quickPreview();
@@ -1348,6 +1200,7 @@
             multipleImagesContainer.innerHTML = '';
             uploadedMultipleImages.forEach((img, i) => addImageToContainer(img.image, i));
             
+            // بررسی حالت اسلایدشو
             isSlideshowMode = uploadedMultipleImages.length > 0;
             
             if (!isSlideshowMode) {
@@ -1394,6 +1247,7 @@
                 
                 backgroundImages.push(img);
                 
+                // ایجاد thumbnail برای گالری
                 const thumb = document.createElement('img');
                 thumb.className = 'background-thumb';
                 thumb.src = img.src;
@@ -1571,7 +1425,7 @@
             }
             
             if (file.size > 5 * 1024 * 1024) {
-                alert('حجم فایل باید کمتر از ۵ مگابایت باشد');
+                alert('حجم فایل باید کمتر از 5 مگابایت باشد');
                 return;
             }
             
@@ -1639,7 +1493,7 @@
             }
             
             if (file.size > 10 * 1024 * 1024) {
-                alert('حجم فایل باید کمتر از ۱۰ مگابایت باشد');
+                alert('حجم فایل باید کمتر از 10 مگابایت باشد');
                 return;
             }
             
@@ -1677,8 +1531,8 @@
             timer.textContent = `${formatTime(elapsed)} / ${formatTime(total)}`;
         }
         
-        // تابع برای رسم متن با کیفیت بالا
-        function drawHighQualityText(ctx, text, options) {
+        // تابع برای رسم متن با افکت‌های مختلف
+        function drawTextWithEffects(ctx, text, options) {
             const {
                 width,
                 height,
@@ -1689,101 +1543,70 @@
                 currentImage
             } = options;
             
-            // کشیدن پس‌زمینه با کیفیت بالا
+            // کشیدن پس‌زمینه یا اسلاید
             if (isSlideshowMode && currentImage) {
-                ctx.save();
-                ctx.imageSmoothingEnabled = true;
-                ctx.imageSmoothingQuality = 'high';
                 ctx.drawImage(currentImage, 0, 0, width, height);
-                ctx.restore();
             } else if (selectedBackground && selectedBackground.complete) {
-                ctx.save();
-                ctx.imageSmoothingEnabled = true;
-                ctx.imageSmoothingQuality = 'high';
                 ctx.drawImage(selectedBackground, 0, 0, width, height);
-                ctx.restore();
             } else {
                 ctx.fillStyle = '#000';
                 ctx.fillRect(0, 0, width, height);
             }
             
             // اضافه کردن لایه تاریکی برای خوانایی بهتر متن
-            if (showTextInVideo && text.trim().length > 0) {
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-                ctx.fillRect(0, 0, width, height);
-            }
-            
-            // اگر متن نمایش داده نشود یا متن خالی باشد، فقط عکس نمایش داده شود
-            if (!showTextInVideo || text.trim().length === 0) {
-                return;
-            }
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+            ctx.fillRect(0, 0, width, height);
             
             // محاسبه تعداد کاراکترهای نمایش داده شده
             const totalChars = text.length;
             const charsToShow = Math.floor(totalChars * progress);
             const visibleText = text.substring(0, charsToShow);
             
-            // تنظیمات فونت با کیفیت بالا
+            // تنظیمات فونت
             ctx.font = `bold ${fontSize}px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             
-            // اعمال افکت‌های متن با کیفیت بالا
+            // اعمال افکت‌های متن
             switch(textEffect) {
                 case 'glow':
                     ctx.shadowColor = textColor;
-                    ctx.shadowBlur = 30;
+                    ctx.shadowBlur = 20;
                     ctx.shadowOffsetX = 0;
                     ctx.shadowOffsetY = 0;
                     ctx.fillStyle = textColor;
                     break;
                     
                 case 'gradient':
-                    const gradient = ctx.createLinearGradient(
-                        width/2 - width * 0.3, 
-                        height/2 - 50, 
-                        width/2 + width * 0.3, 
-                        height/2 + 50
-                    );
+                    const gradient = ctx.createLinearGradient(width/2 - 200, height/2 - 50, width/2 + 200, height/2 + 50);
                     gradient.addColorStop(0, '#ff6b6b');
-                    gradient.addColorStop(0.3, '#ffd93d');
-                    gradient.addColorStop(0.6, '#4ecdc4');
+                    gradient.addColorStop(0.5, '#4ecdc4');
                     gradient.addColorStop(1, '#45b7d1');
                     ctx.fillStyle = gradient;
-                    ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
-                    ctx.shadowBlur = 15;
-                    ctx.shadowOffsetX = 3;
-                    ctx.shadowOffsetY = 3;
+                    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+                    ctx.shadowBlur = 10;
+                    ctx.shadowOffsetX = 2;
+                    ctx.shadowOffsetY = 2;
                     break;
                     
-                case 'outline':
-                    ctx.strokeStyle = '#000';
-                    ctx.lineWidth = 4;
-                    ctx.lineJoin = 'round';
+                case 'simple':
                     ctx.fillStyle = textColor;
                     ctx.shadowColor = 'transparent';
-                    break;
-                    
-                case '3d':
-                    ctx.fillStyle = textColor;
-                    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-                    ctx.shadowBlur = 10;
-                    ctx.shadowOffsetX = 4;
-                    ctx.shadowOffsetY = 4;
+                    ctx.shadowBlur = 0;
                     break;
                     
                 default: // shadow
                     ctx.fillStyle = textColor;
                     ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
-                    ctx.shadowBlur = 12;
-                    ctx.shadowOffsetX = 3;
-                    ctx.shadowOffsetY = 3;
+                    ctx.shadowBlur = 10;
+                    ctx.shadowOffsetX = 2;
+                    ctx.shadowOffsetY = 2;
                     break;
             }
             
             // شکستن خطوط متن
             const maxWidth = width * 0.85;
-            const lineHeight = fontSize * 1.6;
+            const lineHeight = fontSize * 1.5;
             
             const lines = [];
             let currentLine = '';
@@ -1804,30 +1627,36 @@
                 lines.push(currentLine);
             }
             
-            // رسم خطوط متن با کیفیت بالا
+            // رسم خطوط متن
             const startY = height / 2 - (lines.length - 1) * lineHeight / 2;
             
             lines.forEach((line, index) => {
                 const y = startY + index * lineHeight;
-                
-                if (textEffect === 'outline') {
-                    ctx.strokeText(line, width / 2, y);
-                    ctx.fillText(line, width / 2, y);
-                } else {
-                    ctx.fillText(line, width / 2, y);
-                }
+                ctx.fillText(line, width / 2, y);
             });
+            
+            // رسم مکان‌نما (اگر متن کامل نشده)
+            if (charsToShow < totalChars) {
+                const lastLine = lines[lines.length - 1];
+                const metrics = ctx.measureText(lastLine);
+                const cursorX = width / 2 + metrics.width / 2 + 5;
+                const cursorY = startY + (lines.length - 1) * lineHeight - fontSize * 0.2;
+                
+                ctx.fillStyle = textColor;
+                ctx.shadowColor = 'transparent';
+                ctx.shadowBlur = 0;
+                ctx.fillRect(cursorX, cursorY, 3, fontSize * 0.8);
+            }
             
             // بازنشانی تنظیمات سایه
             ctx.shadowColor = 'transparent';
             ctx.shadowBlur = 0;
             ctx.shadowOffsetX = 0;
             ctx.shadowOffsetY = 0;
-            ctx.strokeStyle = 'transparent';
         }
         
-        // تابع ایجاد ویدیو با کیفیت بالا
-        async function createHighQualityVideo() {
+        // تابع ایجاد ویدیو با صدا
+        async function createVideoWithAudio() {
             if (isGenerating) return;
             
             if (!selectedBackground && !userUploadedImage && uploadedMultipleImages.length === 0) {
@@ -1837,65 +1666,50 @@
             
             isGenerating = true;
             loadingIndicator.style.display = 'block';
-            loadingText.textContent = 'در حال ساخت ویدیو با کیفیت بالا...';
-            loadingDetails.textContent = 'این فرآیند ممکن است چند لحظه طول بکشد';
+            loadingText.textContent = 'در حال ساخت ویدیو با صدا...';
             generateBtn.disabled = true;
             canvasPlaceholder.style.display = 'none';
             videoCanvas.style.display = 'block';
             progressBarContainer.style.display = 'block';
             
             // دریافت تنظیمات
-            const text = textInput.value || "";
+            const text = textInput.value || "متن خود را وارد کنید";
             const fontSize = parseInt(fontSizeSelect.value);
             const textColor = textColorSelect.value;
             const textEffect = textEffectSelect.value;
             const duration = parseInt(durationSlider.value);
             const transitionDuration = parseFloat(transitionDurationSlider.value);
-            fpsRate = parseInt(fpsRateSelect.value);
+            const transitionEffect = transitionEffectSelect.value;
             
-            // ابعاد کانواس بر اساس کیفیت
+            // ابعاد کانواس
             const width = videoCanvas.width;
             const height = videoCanvas.height;
             
             try {
-                loadingText.textContent = 'در حال آماده‌سازی با کیفیت بالا...';
-                progressFill.style.width = '5%';
+                loadingText.textContent = 'در حال آماده‌سازی صدا و تصویر...';
+                progressFill.style.width = '10%';
                 
-                // ایجاد MediaStream از canvas با کیفیت بالا
-                const canvasStream = videoCanvas.captureStream(fpsRate);
-                
-                // بهینه‌سازی کیفیت Canvas
-                ctx.imageSmoothingEnabled = true;
-                ctx.imageSmoothingQuality = 'high';
-                ctx.textRendering = 'optimizeLegibility';
-                
+                // ایجاد MediaStream از canvas
+                const canvasStream = videoCanvas.captureStream(30);
                 recordedChunks = [];
                 
                 // اگر صدا وجود دارد، آن را به stream اضافه کن
                 let finalStream = canvasStream;
                 
                 if (userUploadedAudio && audioBlob) {
-                    loadingText.textContent = 'در حال ترکیب صدا با کیفیت بالا...';
-                    progressFill.style.width = '15%';
+                    loadingText.textContent = 'در حال ترکیب صدا با ویدیو...';
+                    progressFill.style.width = '30%';
                     
                     const arrayBuffer = await audioBlob.arrayBuffer();
                     
-                    audioContext = new (window.AudioContext || window.webkitAudioContext)({
-                        sampleRate: 48000 // کیفیت صدا بالا
-                    });
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
                     
                     audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
                     
                     const audioDestination = audioContext.createMediaStreamDestination();
                     audioSource = audioContext.createBufferSource();
                     audioSource.buffer = audioBuffer;
-                    
-                    // افزودن فیلترهای صوتی برای کیفیت بهتر
-                    const gainNode = audioContext.createGain();
-                    gainNode.gain.value = 1.0;
-                    
-                    audioSource.connect(gainNode);
-                    gainNode.connect(audioDestination);
+                    audioSource.connect(audioDestination);
                     
                     const audioTrack = audioDestination.stream.getAudioTracks()[0];
                     const videoTrack = canvasStream.getVideoTracks()[0];
@@ -1907,38 +1721,17 @@
                     }
                 }
                 
-                // پیدا کردن بهترین کدک ویدیویی
-                let mimeType;
-                let videoBitsPerSecond;
+                // تنظیمات MediaRecorder
+                const mimeType = MediaRecorder.isTypeSupported('video/mp4') 
+                    ? 'video/mp4'
+                    : MediaRecorder.isTypeSupported('video/webm;codecs=vp9,opus') 
+                    ? 'video/webm;codecs=vp9,opus'
+                    : 'video/webm';
                 
-                if (MediaRecorder.isTypeSupported('video/mp4;codecs=avc1.640028')) {
-                    // H.264 High Profile
-                    mimeType = 'video/mp4;codecs=avc1.640028';
-                    videoBitsPerSecond = videoQuality >= 1440 ? 8000000 : 5000000;
-                } else if (MediaRecorder.isTypeSupported('video/webm;codecs=vp9')) {
-                    // VP9 (کیفیت بهتر)
-                    mimeType = 'video/webm;codecs=vp9';
-                    videoBitsPerSecond = videoQuality >= 1440 ? 10000000 : 6000000;
-                } else if (MediaRecorder.isTypeSupported('video/webm;codecs=vp8')) {
-                    // VP8
-                    mimeType = 'video/webm;codecs=vp8';
-                    videoBitsPerSecond = 4000000;
-                } else {
-                    mimeType = 'video/webm';
-                    videoBitsPerSecond = 3000000;
-                }
-                
-                loadingDetails.textContent = `استفاده از کدک: ${mimeType.includes('avc1') ? 'H.264 (کیفیت بالا)' : 'VP9 (کیفیت بهینه)'}`;
-                progressFill.style.width = '25%';
-                
-                // تنظیمات MediaRecorder با کیفیت بالا
-                const recorderOptions = { 
+                mediaRecorder = new MediaRecorder(finalStream, { 
                     mimeType,
-                    videoBitsPerSecond,
-                    audioBitsPerSecond: 192000 // کیفیت صدا 192kbps
-                };
-                
-                mediaRecorder = new MediaRecorder(finalStream, recorderOptions);
+                    videoBitsPerSecond: 2500000
+                });
                 
                 mediaRecorder.ondataavailable = (event) => {
                     if (event.data.size > 0) {
@@ -1957,13 +1750,11 @@
                     downloadBtn.onclick = () => {
                         const a = document.createElement('a');
                         a.href = url;
-                        const extension = mediaRecorder.mimeType.includes('mp4') ? 'mp4' : 'webm';
-                        const qualityLabel = videoQuality === 2160 ? '4K' : videoQuality === 1440 ? '2K' : `${videoQuality}p`;
-                        a.download = `ویدیو-${qualityLabel}-${Date.now()}.${extension}`;
+                        a.download = `ویدیو-حرفه‌ای-${Date.now()}.${mediaRecorder.mimeType.includes('mp4') ? 'mp4' : 'webm'}`;
                         document.body.appendChild(a);
                         a.click();
                         document.body.removeChild(a);
-                        setTimeout(() => URL.revokeObjectURL(url), 1000);
+                        URL.revokeObjectURL(url);
                     };
                     
                     isGenerating = false;
@@ -1971,7 +1762,7 @@
                     generateBtn.disabled = false;
                     progressBarContainer.style.display = 'none';
                     
-                    // پاکسازی منابع
+                    // پاکسازی صدا
                     if (audioSource) {
                         audioSource.stop();
                         audioSource.disconnect();
@@ -1979,13 +1770,10 @@
                     if (audioContext && audioContext.state !== 'closed') {
                         audioContext.close();
                     }
-                    
-                    loadingText.textContent = 'ویدیو با موفقیت ساخته شد!';
-                    loadingDetails.textContent = 'حالا می‌توانید ویدیو را دانلود کنید';
                 };
                 
                 // شروع ضبط
-                mediaRecorder.start(1000); // ارسال داده هر 1 ثانیه
+                mediaRecorder.start();
                 startTime = Date.now();
                 
                 // شروع پخش صدا (اگر وجود دارد)
@@ -1995,10 +1783,9 @@
                 
                 // محاسبه پیشرفت
                 let frameCount = 0;
-                const totalFrames = duration * fpsRate;
-                const transitionFrames = transitionDuration * fpsRate;
+                const totalFrames = duration * 30; // 30 فریم بر ثانیه
                 
-                // تابع انیمیشن با کیفیت بالا
+                // تابع انیمیشن
                 function animate() {
                     const elapsed = Date.now() - startTime;
                     const progress = Math.min(elapsed / (duration * 1000), 1);
@@ -2011,17 +1798,15 @@
                     const processingProgress = Math.min((frameCount / totalFrames) * 100, 100);
                     progressFill.style.width = processingProgress + '%';
                     
-                    // انتخاب تصویر برای نمایش (اسلایدشو)
+                    // انتخاب تصویر برای نمایش
                     let currentImage = null;
                     if (isSlideshowMode && uploadedMultipleImages.length > 0) {
-                        const totalSlides = uploadedMultipleImages.length;
-                        const currentFrame = Math.floor(elapsed / 1000 * fpsRate);
-                        const slideIndex = Math.floor(currentFrame / transitionFrames) % totalSlides;
+                        const slideIndex = Math.floor((elapsed / 1000) / transitionDuration) % uploadedMultipleImages.length;
                         currentImage = uploadedMultipleImages[slideIndex].image;
                     }
                     
-                    // رسم با کیفیت بالا
-                    drawHighQualityText(ctx, text, {
+                    // رسم انیمیشن
+                    drawTextWithEffects(ctx, text, {
                         width,
                         height,
                         fontSize,
@@ -2032,10 +1817,7 @@
                     });
                     
                     if (progress < 1) {
-                        // استفاده از requestAnimationFrame با تنظیم FPS
-                        setTimeout(() => {
-                            animationId = requestAnimationFrame(animate);
-                        }, 1000 / fpsRate);
+                        animationId = requestAnimationFrame(animate);
                     } else {
                         cancelAnimationFrame(animationId);
                         
@@ -2044,15 +1826,12 @@
                             audioSource.stop();
                         }
                         
-                        // توقف ضبط با تأخیر برای اطمینان از کامل شدن
+                        // توقف ضبط
                         setTimeout(() => {
-                            if (mediaRecorder.state === 'recording') {
-                                mediaRecorder.stop();
-                                updateTimerDisplay(duration, duration);
-                                loadingText.textContent = 'ویدیو با کیفیت بالا ساخته شد!';
-                                loadingDetails.textContent = 'در حال ذخیره‌سازی فایل نهایی...';
-                            }
-                        }, 1000);
+                            mediaRecorder.stop();
+                            updateTimerDisplay(duration, duration);
+                            loadingText.textContent = 'ویدیو با موفقیت ساخته شد!';
+                        }, 500);
                     }
                 }
                 
@@ -2062,14 +1841,12 @@
             } catch (error) {
                 console.error('خطا در ساخت ویدیو:', error);
                 loadingText.textContent = 'خطا در ساخت ویدیو. لطفا دوباره تلاش کنید.';
-                loadingDetails.textContent = error.message;
-                
                 setTimeout(() => {
                     loadingIndicator.style.display = 'none';
                     isGenerating = false;
                     generateBtn.disabled = false;
                     progressBarContainer.style.display = 'none';
-                }, 3000);
+                }, 2000);
                 
                 // پاکسازی در صورت خطا
                 if (audioSource) {
@@ -2083,12 +1860,33 @@
         }
         
         // رویدادها
-        generateBtn.addEventListener('click', createHighQualityVideo);
+        generateBtn.addEventListener('click', createVideoWithAudio);
         
         // بارگذاری عکس‌های طبیعت واقعی
         loadRealNatureBackgrounds();
         
-        // پیش‌نمایش اولیه
+        // نمونه متن‌های پیشنهادی
+        const sampleTexts = [
+            "🌿 زیبایی‌های طبیعت 🌸\n\nطبیعت بهترین هنرمند است:\n• کوه‌های سر به فلک کشیده\n• جنگل‌های انبوه و سبز\n• رودخانه‌های خروشان\n• حیوانات زیبا و دوست‌داشتنی\n\nبیایید از طبیعت حفاظت کنیم!",
+            "🐬 دنیای زیر آب 🐠\n\nاقیانوس‌ها پر از شگفتی هستند:\n• دلفین‌های باهوش\n• نهنگ‌های عظیم\n• مرجان‌های رنگارنگ\n• ماهی‌های کوچک و بزرگ\n\nحفاظت از دریاها وظیفه همه ماست.",
+            "🦁 پادشاهان حیات وحش 🐯\n\nحیوانات وحشی نشانه قدرت طبیعت:\n• شیر: سلطان جنگل\n• ببر: نماد قدرت\n• فیل: حافظه قوی\n• پاندا: نماد صلح\n\nبیایید از آنها محافظت کنیم."
+        ];
+        
+        // اضافه کردن دکمه‌های متن نمونه
+        const sampleButtons = document.createElement('div');
+        sampleButtons.style.marginTop = '15px';
+        sampleButtons.innerHTML = `
+            <p style="margin-bottom: 10px; color: #a0c8ff; font-size: 0.9rem;">متن‌های نمونه طبیعت و حیوانات:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                ${sampleTexts.map((text, index) => 
+                    `<button class="btn-secondary" style="padding: 6px 10px; font-size: 0.8rem; min-width: auto; border-radius: 8px;" onclick="document.getElementById('textInput').value = \`${text.replace(/\n/g, '\\n').replace(/`/g, '\\`')}\`">مثال ${index + 1}</button>`
+                ).join('')}
+            </div>
+        `;
+        
+        textInput.parentNode.insertBefore(sampleButtons, textInput.nextSibling);
+        
+        // پیش‌نمایش اولیه پس از بارگذاری
         setTimeout(() => {
             if (!isGenerating && selectedBackground) {
                 quickPreview();
@@ -2112,10 +1910,7 @@
         }, false);
         
         // به‌روزرسانی اولیه تایمر
-        updateTimerDisplay(0, 15);
-        
-        // تنظیم کیفیت اولیه
-        setCanvasQuality(1080);
+        updateTimerDisplay(0, 10);
     </script>
 </body>
 </html>
