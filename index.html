@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>تبدیل متن به ویدیو با عکس واقعی، صدا و ۲۰ ثانیه</title>
+    <title>تبدیل متن به ویدیو با عکس واقعی، صدا و اسلایدشو حرفه‌ای</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -26,14 +26,11 @@
             max-width: 100%;
             margin: 0 auto;
             padding: 15px;
-            transform: scale(0.95);
-            transform-origin: top center;
         }
         
         @media (min-width: 768px) {
             .container {
                 max-width: 800px;
-                transform: scale(1);
             }
         }
         
@@ -217,7 +214,7 @@
             color: #a0c8ff;
         }
         
-        #uploadInput, #audioInput {
+        #uploadInput, #audioInput, #multipleImagesInput {
             display: none;
         }
         
@@ -370,7 +367,7 @@
             box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
         }
         
-        .btn-primary:hover {
+        .btn-primary:hover:not(:disabled) {
             background: linear-gradient(to right, #ff5252, #ff7b7b);
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
@@ -385,6 +382,12 @@
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-3px);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
         }
         
         .video-container {
@@ -569,10 +572,204 @@
             text-align: center;
         }
         
+        /* اسلایدشو جدید */
+        .slideshow-controls {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        
+        .slideshow-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #4ecdc4;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .slideshow-sliders {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .slider-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .slider-group label {
+            min-width: 100px;
+            margin: 0;
+        }
+        
+        .slider-value {
+            min-width: 40px;
+            text-align: center;
+            font-weight: bold;
+            color: #4ecdc4;
+        }
+        
+        .images-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            gap: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        
+        .image-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+        
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-remove {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: rgba(255, 107, 107, 0.8);
+            border: none;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .multi-upload-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            border: 2px dashed #ff6b6b;
+            grid-column: 1 / -1;
+        }
+        
+        .multi-upload-btn:hover {
+            background: rgba(255, 107, 107, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .multi-upload-btn i {
+            font-size: 1.5rem;
+            color: #ff6b6b;
+            margin-bottom: 8px;
+        }
+        
+        .multi-upload-btn span {
+            font-size: 0.8rem;
+            color: #a0c8ff;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-top: 10px;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #4ecdc4, #45b7d1);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        /* تنظیمات کیفیت */
+        .quality-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .quality-btn {
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #a0c8ff;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+        }
+        
+        .quality-btn.active {
+            background: rgba(78, 205, 196, 0.2);
+            color: #4ecdc4;
+            border-color: #4ecdc4;
+        }
+        
+        .quality-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
         @media (max-width: 768px) {
             textarea, select, input, button {
                 font-size: 16px !important;
             }
+        }
+        
+        .text-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .text-toggle {
+            padding: 8px 15px;
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 8px;
+            color: #ff6b6b;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .text-toggle.active {
+            background: rgba(78, 205, 196, 0.2);
+            color: #4ecdc4;
+            border-color: #4ecdc4;
+        }
+        
+        .text-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-hint {
+            font-size: 0.8rem;
+            color: #a0c8ff;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -580,7 +777,7 @@
     <div class="container">
         <header>
             <h1><i class="fas fa-video"></i> تبدیل متن به ویدیو حرفه‌ای</h1>
-            <p class="subtitle">با عکس‌های واقعی، امکان صداگذاری و مدت ۲۰ ثانیه</p>
+            <p class="subtitle">با عکس‌های واقعی، امکان صداگذاری و ساخت اسلایدشو</p>
             
             <div class="social-badges">
                 <div class="social-badge">
@@ -592,8 +789,12 @@
                     صداگذاری
                 </div>
                 <div class="social-badge">
-                    <i class="fas fa-clock" style="color: #ffd93d;"></i>
-                    تا ۲۰ ثانیه
+                    <i class="fas fa-sliders-h" style="color: #ffd93d;"></i>
+                    اسلایدشو
+                </div>
+                <div class="social-badge">
+                    <i class="fas fa-hd" style="color: #45b7d1;"></i>
+                    کیفیت 4K
                 </div>
             </div>
         </header>
@@ -602,21 +803,21 @@
             <section class="input-section">
                 <h2 class="section-title"><i class="fas fa-edit"></i> متن و تنظیمات</h2>
                 
-                <textarea id="textInput" placeholder="متن خود را اینجا وارد کنید...">🐘 حیات وحش شگفت‌انگیز 🦁
-
-طبیعت پر از زیبایی‌های حیرت‌انگیز است:
-• فیل‌های باشکوه در آفریقا
-• شیرهای قدرتمند در ساوانا
-• پاندای دوست‌داشتنی در جنگل
-• دلفین‌های بازیگوش در اقیانوس
-
-حفاظت از حیات وحش وظیفه همه ماست!</textarea>
+                <textarea id="textInput" placeholder="متن خود را اینجا وارد کنید یا خالی بگذارید..."></textarea>
+                
+                <div class="text-controls">
+                    <button class="text-toggle active" id="textToggle">
+                        <i class="fas fa-font"></i> نمایش متن در ویدیو
+                    </button>
+                    <span class="text-hint">اگر متن وارد نکنید، فقط عکس‌ها نمایش داده می‌شوند</span>
+                </div>
                 
                 <div class="controls">
                     <div class="control-group">
                         <label for="fontSize"><i class="fas fa-text-height"></i> اندازه فونت</label>
                         <select id="fontSize">
-                            <option value="40">بزرگ</option>
+                            <option value="48">خیلی بزرگ</option>
+                            <option value="42">بزرگ</option>
                             <option value="36" selected>متوسط</option>
                             <option value="32">کوچک</option>
                             <option value="28">خیلی کوچک</option>
@@ -632,6 +833,8 @@
                             <option value="#45b7d1">آبی آسمانی</option>
                             <option value="#96ceb4">سبز</option>
                             <option value="#ffd93d">زرد</option>
+                            <option value="#ff9ff3">صورتی</option>
+                            <option value="#feca57">طلایی</option>
                         </select>
                     </div>
                     
@@ -641,16 +844,75 @@
                             <option value="shadow" selected>سایه دار</option>
                             <option value="glow">درخشان</option>
                             <option value="gradient">گرادیان</option>
-                            <option value="simple">ساده</option>
+                            <option value="outline">حاشیه دار</option>
+                            <option value="3d">سه بعدی</option>
                         </select>
                     </div>
                     
                     <div class="control-group">
                         <label for="duration"><i class="fas fa-clock"></i> مدت ویدیو (ثانیه)</label>
                         <div class="duration-control">
-                            <input type="range" id="duration" min="5" max="20" value="10" step="1">
-                            <span class="duration-value" id="durationValue">10</span>
+                            <input type="range" id="duration" min="5" max="600" value="15" step="1">
+                            <span class="duration-value" id="durationValue">15</span>
                         </div>
+                    </div>
+                </div>
+                
+                <!-- بخش کیفیت -->
+                <div class="slideshow-controls">
+                    <h3 class="slideshow-title"><i class="fas fa-hd"></i> تنظیمات کیفیت ویدیو</h3>
+                    
+                    <div class="quality-controls">
+                        <button class="quality-btn active" data-quality="720">HD 720p</button>
+                        <button class="quality-btn" data-quality="1080">Full HD 1080p</button>
+                        <button class="quality-btn" data-quality="1440">2K 1440p</button>
+                        <button class="quality-btn" data-quality="2160">4K 2160p</button>
+                    </div>
+                    
+                    <div class="slideshow-sliders" style="margin-top: 15px;">
+                        <div class="slider-group">
+                            <label for="fpsRate">فریم بر ثانیه:</label>
+                            <select id="fpsRate">
+                                <option value="24">24 FPS (فیلمی)</option>
+                                <option value="30" selected>30 FPS (استاندارد)</option>
+                                <option value="60">60 FPS (نرم)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- بخش اسلایدشو -->
+                <div class="slideshow-controls">
+                    <h3 class="slideshow-title"><i class="fas fa-sliders-h"></i> تنظیمات اسلایدشو</h3>
+                    
+                    <div class="slideshow-sliders">
+                        <div class="slider-group">
+                            <label for="transitionDuration">مدت هر عکس:</label>
+                            <input type="range" id="transitionDuration" min="1" max="10" value="3" step="0.5">
+                            <span class="slider-value" id="transitionDurationValue">3 ثانیه</span>
+                        </div>
+                        
+                        <div class="slider-group">
+                            <label for="transitionEffect">افکت انتقال:</label>
+                            <select id="transitionEffect">
+                                <option value="fade">محو شدن</option>
+                                <option value="slide" selected>لغزش</option>
+                                <option value="zoom">زوم</option>
+                                <option value="pan">حرکت</option>
+                                <option value="none">بدون افکت</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="multi-upload-btn" id="multiUploadTrigger">
+                        <i class="fas fa-layer-group"></i>
+                        <span>برای آپلود چند عکس کلیک کنید</span>
+                        <span style="font-size: 0.7rem; margin-top: 5px; color: #888;">حداکثر ۲۰ عکس</span>
+                    </div>
+                    <input type="file" id="multipleImagesInput" accept="image/*" multiple>
+                    
+                    <div class="images-container" id="multipleImagesContainer">
+                        <!-- عکس‌های آپلود شده اینجا نمایش داده می‌شوند -->
                     </div>
                 </div>
                 
@@ -718,6 +980,10 @@
                     </div>
                 </div>
                 
+                <div class="progress-bar" id="progressBarContainer">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                
                 <div class="buttons">
                     <button id="generateBtn" class="btn btn-primary">
                         <i class="fas fa-play-circle"></i> ایجاد ویدیو
@@ -730,6 +996,7 @@
                 <div class="loading" id="loadingIndicator">
                     <div class="loading-spinner"></div>
                     <p id="loadingText">در حال ساخت ویدیو حرفه‌ای...</p>
+                    <p id="loadingDetails">لطفا صبر کنید...</p>
                 </div>
             </section>
             
@@ -737,8 +1004,8 @@
                 <h2 class="section-title"><i class="fas fa-eye"></i> پیش‌نمایش ویدیو</h2>
                 
                 <div class="video-container">
-                    <canvas id="videoCanvas" width="800" height="450"></canvas>
-                    <div class="timer" id="timer">00:00 / 00:10</div>
+                    <canvas id="videoCanvas" width="1920" height="1080"></canvas>
+                    <div class="timer" id="timer">00:00 / 00:15</div>
                     
                     <div id="canvasPlaceholder">
                         <p style="color: #aaa; font-size: 1rem; text-align: center; padding: 20px;">
@@ -749,7 +1016,8 @@
                 </div>
                 
                 <div class="instructions">
-                    <p><i class="fas fa-info-circle"></i> کیفیت ویدیو: HD 1080p • حداکثر مدت: 20 ثانیه • با صدا • فرمت: MP4</p>
+                    <p><i class="fas fa-info-circle"></i> کیفیت ویدیو: تا 4K • حداکثر مدت: 10 دقیقه • با صدا • فرمت: MP4</p>
+                    <p><i class="fas fa-exclamation-triangle"></i> هرچه کیفیت بالاتر باشد، زمان ساخت بیشتر طول می‌کشد</p>
                 </div>
             </section>
         </div>
@@ -757,14 +1025,15 @@
         <section class="info-section">
             <h3 class="info-title"><i class="fas fa-lightbulb"></i> راهنمای کامل ساخت ویدیو حرفه‌ای</h3>
             <ul class="info-list">
-                <li><strong>متن جذاب بنویسید:</strong> از متن نمونه حیات وحش استفاده کنید یا متن خود را بنویسید</li>
-                <li><strong>تنظیم مدت زمان:</strong> با اسلایدر مدت ویدیو را از 5 تا 20 ثانیه تنظیم کنید</li>
+                <li><strong>متن دلخواه (اختیاری):</strong> اگر می‌خواهید متن در ویدیو نمایش داده شود، آن را تایپ کنید</li>
+                <li><strong>تنظیم کیفیت:</strong> کیفیت ویدیو را از 720p تا 4K انتخاب کنید</li>
+                <li><strong>آپلود چند عکس:</strong> تا 20 عکس آپلود کنید تا اسلایدشو بسازید</li>
+                <li><strong>تنظیم مدت زمان:</strong> با اسلایدر مدت ویدیو را از 5 تا 600 ثانیه تنظیم کنید</li>
                 <li><strong>انتخاب پس‌زمینه:</strong> از 50 عکس واقعی حیوانات و طبیعت انتخاب کنید یا عکس خود را آپلود کنید</li>
                 <li><strong>افزودن صدا (اختیاری):</strong> فایل صوتی MP3, WAV یا OGG آپلود کنید تا روی ویدیو پخش شود</li>
                 <li><strong>تنظیمات متن:</strong> اندازه، رنگ و افکت متن را تنظیم کنید</li>
                 <li><strong>ایجاد ویدیو:</strong> روی دکمه "ایجاد ویدیو" کلیک کنید تا ویدیو با صدا ساخته شود</li>
-                <li><strong>دانلود:</strong> ویدیوی نهایی را با کیفیت HD و صدای ضبط شده دانلود کنید</li>
-                <li><strong>اشتراک‌گذاری:</strong> ویدیو را در شبکه‌های اجتماعی مانند اینستاگرام، تلگرام و... منتشر کنید</li>
+                <li><strong>دانلود:</strong> ویدیوی نهایی را با کیفیت انتخابی دانلود کنید</li>
             </ul>
         </section>
     </div>
@@ -772,6 +1041,7 @@
     <script>
         // عناصر DOM
         const textInput = document.getElementById('textInput');
+        const textToggle = document.getElementById('textToggle');
         const fontSizeSelect = document.getElementById('fontSize');
         const textColorSelect = document.getElementById('textColor');
         const textEffectSelect = document.getElementById('textEffect');
@@ -783,9 +1053,24 @@
         const timer = document.getElementById('timer');
         const loadingIndicator = document.getElementById('loadingIndicator');
         const loadingText = document.getElementById('loadingText');
+        const loadingDetails = document.getElementById('loadingDetails');
         const canvasPlaceholder = document.getElementById('canvasPlaceholder');
         const backgroundGallery = document.getElementById('backgroundGallery');
         const selectedBgInfo = document.getElementById('selectedBgInfo');
+        
+        // عناصر جدید برای اسلایدشو
+        const multipleImagesInput = document.getElementById('multipleImagesInput');
+        const multiUploadTrigger = document.getElementById('multiUploadTrigger');
+        const multipleImagesContainer = document.getElementById('multipleImagesContainer');
+        const transitionDurationSlider = document.getElementById('transitionDuration');
+        const transitionDurationValue = document.getElementById('transitionDurationValue');
+        const transitionEffectSelect = document.getElementById('transitionEffect');
+        const progressBarContainer = document.getElementById('progressBarContainer');
+        const progressFill = document.getElementById('progressFill');
+        
+        // عناصر کیفیت
+        const qualityBtns = document.querySelectorAll('.quality-btn');
+        const fpsRateSelect = document.getElementById('fpsRate');
         
         // عناصر آپلود
         const uploadInput = document.getElementById('uploadInput');
@@ -813,7 +1098,7 @@
         let recordedChunks = [];
         let startTime = null;
         let isGenerating = false;
-        let ctx = videoCanvas.getContext('2d');
+        let ctx = videoCanvas.getContext('2d', { alpha: false });
         let selectedBackground = null;
         let backgroundImages = [];
         let loadedImages = 0;
@@ -825,75 +1110,252 @@
         let audioBuffer = null;
         let audioSource = null;
         
+        // متغیرهای جدید
+        let uploadedMultipleImages = [];
+        let currentSlideIndex = 0;
+        let slideStartTime = 0;
+        let isSlideshowMode = false;
+        let showTextInVideo = true;
+        let videoQuality = 1080;
+        let fpsRate = 30;
+        
         // تنظیمات اولیه
         videoCanvas.style.display = 'none';
         
-        // لیست ۵۰ عکس واقعی از طبیعت و حیوانات (لینک‌های واقعی)
+        // لیست ۵۰ عکس واقعی از طبیعت و حیوانات
         const realNatureBackgrounds = [
-            // حیوانات وحشی (1-15)
-            "https://pixabay.com/3d-models/heart-love-icon-symbol-cartoon-23/", // شیر
-            "https://pixabay.com/3d-models/fantasy-tower-3d-model-2690/", // فیل
-            "https://pixabay.com/3d-models/police-car-patrol-car-2064/", // اسب
-            "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // گرگ
-            "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // خرس
-            "https://images.unsplash.com/photo-1559253664-ca249d4608c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // پرندگان
-            "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // پاندا
-            "https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // گوزن
-            "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // ببر
-            "https://images.unsplash.com/photo-1551085254-e96b210db58a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // زرافه
-            "https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // کانگورو
-            "https://images.unsplash.com/photo-1559253664-ca249d4608c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // عقاب
-            "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // روباه
-            "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // پلنگ
-            "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // یوزپلنگ
-            
-            // طبیعت و منظره (16-30)
-            "https://pixabay.com/photos/dog-animal-puppy-cute-shiba-9830831/", // کوهستان
-            "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // دریا
-            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // جنگل
-            "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // صحرا
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // کوه‌های یخی
-            "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // آبشار
-            "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // دریاچه
-            "https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // مرتع
-            "https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // جزیره
-            "https://images.unsplash.com/photo-1476820865390-c52aeebb9891?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // قله کوه
-            "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // شن‌های روان
-            "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // برف
-            "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // موج دریا
-            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // جنگل بارانی
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // یخچال طبیعی
-            
-            // حیوانات دریایی (31-40)
-            "https://pixabay.com/photos/christmas-ornament-ball-red-4707204/", // دلفین
-            "https://pixabay.com/photos/christmas-ball-red-ball-8413268/", // نهنگ
-            "https://pixabay.com/photos/festivity-decorations-light-ball-4702680/", // کوسه
-            "https://pixabay.com/photos/window-pillows-candles-lights-cozy-8431870/", // ماهی رنگین‌کمان
-            "https://pixabay.com/photos/glitter-confetti-party-christmas-9297612/", // لاک‌پشت دریایی
-            "https://pixabay.com/photos/christmas-christmas-ball-decor-9187543/", // ستاره دریایی
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // عروس دریایی
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // اختاپوس
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // مرجان‌ها
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // پنگوئن
-            
-            // گلها و گیاهان (41-50)
-            "https://pixabay.com/3d-models/six-string-guitar-acoustic-guitar-2075/", // گل رز
-            "https://pixabay.com/3d-models/money-coins-finance-wealth-profit-1832/", // آفتابگردان
-            "https://pixabay.com/photos/kobe-the-sea-blue-sky-4975863/", // ارکیده
-            "https://pixabay.com/photos/boat-sea-peilityyni-water-sky-4395122/", // لاله
-            "https://pixabay.com/photos/milky-way-night-sky-stars-559641/", // نیلوفر آبی
-            "https://pixabay.com/photos/bridge-shine-sky-vietnam-night-7504605/", // درختان بلند
-            "https://pixabay.com/photos/moon-full-moon-sea-sky-night-sky-2762111/", // بامبو
-            "https://pixabay.com/photos/road-trees-sunset-austria-cold-8844555/", // گل‌های وحشی
-            "https://pixabay.com/photos/hills-winter-sunset-snow-trees-5942468/", // کاکتوس
-            "https://pixabay.com/photos/road-sunbeams-sunrise-highway-3478977/", // بونسای
+            "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1551085254-e96b210db58a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1559253664-ca249d4608c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1551085254-e96b210db58a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1559253664-ca249d4608c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1476820865390-c52aeebb9891?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
         ];
         
         // اسلایدر مدت زمان
         durationSlider.addEventListener('input', function() {
-            durationValue.textContent = this.value;
-            updateTimerDisplay(0, parseInt(this.value));
+            const value = parseInt(this.value);
+            durationValue.textContent = value;
+            updateTimerDisplay(0, value);
         });
+        
+        // اسلایدر مدت انتقال
+        transitionDurationSlider.addEventListener('input', function() {
+            const value = parseFloat(this.value);
+            transitionDurationValue.textContent = value + ' ثانیه';
+        });
+        
+        // کنترل کیفیت
+        qualityBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                qualityBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                videoQuality = parseInt(this.dataset.quality);
+                
+                // تنظیم کیفیت کانواس
+                setCanvasQuality(videoQuality);
+            });
+        });
+        
+        // تنظیم کیفیت کانواس
+        function setCanvasQuality(quality) {
+            let width, height;
+            
+            switch(quality) {
+                case 720:
+                    width = 1280;
+                    height = 720;
+                    break;
+                case 1080:
+                    width = 1920;
+                    height = 1080;
+                    break;
+                case 1440:
+                    width = 2560;
+                    height = 1440;
+                    break;
+                case 2160:
+                    width = 3840;
+                    height = 2160;
+                    break;
+                default:
+                    width = 1920;
+                    height = 1080;
+            }
+            
+            videoCanvas.width = width;
+            videoCanvas.height = height;
+            videoCanvas.style.width = '100%';
+            videoCanvas.style.height = 'auto';
+        }
+        
+        // کنترل نمایش متن
+        textToggle.addEventListener('click', function() {
+            showTextInVideo = !showTextInVideo;
+            this.classList.toggle('active');
+            if (showTextInVideo) {
+                this.innerHTML = '<i class="fas fa-font"></i> نمایش متن در ویدیو';
+            } else {
+                this.innerHTML = '<i class="fas fa-eye-slash"></i> مخفی کردن متن در ویدیو';
+            }
+        });
+        
+        // آپلود چند عکس
+        multiUploadTrigger.addEventListener('click', () => {
+            multipleImagesInput.click();
+        });
+        
+        multipleImagesInput.addEventListener('change', async function(e) {
+            const files = Array.from(e.target.files);
+            const maxFiles = 20;
+            
+            if (files.length > maxFiles) {
+                alert(`حداکثر ${maxFiles} عکس می‌توانید آپلود کنید`);
+                return;
+            }
+            
+            for (const file of files) {
+                if (file.size > 5 * 1024 * 1024) {
+                    alert(`فایل ${file.name} بیش از ۵ مگابایت است`);
+                    return;
+                }
+            }
+            
+            if (uploadedMultipleImages.length + files.length > maxFiles) {
+                const confirmDelete = confirm(`شما ${uploadedMultipleImages.length} عکس دارید. آیا می‌خواهید عکس‌های قبلی حذف شوند؟`);
+                if (confirmDelete) {
+                    uploadedMultipleImages = [];
+                    multipleImagesContainer.innerHTML = '';
+                } else {
+                    return;
+                }
+            }
+            
+            for (const file of files) {
+                try {
+                    const img = await loadImage(file);
+                    uploadedMultipleImages.push({
+                        file: file,
+                        image: img,
+                        name: file.name
+                    });
+                    
+                    addImageToContainer(img, uploadedMultipleImages.length - 1);
+                } catch (error) {
+                    console.error('خطا در بارگذاری عکس:', error);
+                }
+            }
+            
+            isSlideshowMode = uploadedMultipleImages.length > 0;
+            
+            if (isSlideshowMode) {
+                selectedBgInfo.innerHTML = `<i class="fas fa-sliders-h"></i> حالت اسلایدشو فعال (${uploadedMultipleImages.length} عکس)`;
+                quickPreview();
+            }
+            
+            multipleImagesInput.value = '';
+        });
+        
+        function loadImage(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => resolve(img);
+                    img.onerror = reject;
+                    img.src = e.target.result;
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+        
+        function addImageToContainer(img, index) {
+            const item = document.createElement('div');
+            item.className = 'image-item';
+            item.dataset.index = index;
+            
+            const canvas = document.createElement('canvas');
+            canvas.width = 70;
+            canvas.height = 70;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, 70, 70);
+            
+            const imgElement = document.createElement('img');
+            imgElement.src = canvas.toDataURL();
+            imgElement.alt = `عکس ${index + 1}`;
+            
+            const removeBtn = document.createElement('button');
+            removeBtn.className = 'image-remove';
+            removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+            removeBtn.onclick = (e) => {
+                e.stopPropagation();
+                removeMultipleImage(index);
+            };
+            
+            item.appendChild(imgElement);
+            item.appendChild(removeBtn);
+            
+            multipleImagesContainer.appendChild(item);
+        }
+        
+        function removeMultipleImage(index) {
+            uploadedMultipleImages.splice(index, 1);
+            multipleImagesContainer.innerHTML = '';
+            uploadedMultipleImages.forEach((img, i) => addImageToContainer(img.image, i));
+            
+            isSlideshowMode = uploadedMultipleImages.length > 0;
+            
+            if (!isSlideshowMode) {
+                selectedBgInfo.innerHTML = '<i class="fas fa-images"></i> لطفا عکس یا پس‌زمینه انتخاب کنید';
+            } else {
+                selectedBgInfo.innerHTML = `<i class="fas fa-sliders-h"></i> حالت اسلایدشو فعال (${uploadedMultipleImages.length} عکس)`;
+            }
+        }
         
         // بارگذاری عکس‌های واقعی
         function loadRealNatureBackgrounds() {
@@ -917,7 +1379,6 @@
                 };
                 
                 img.onerror = () => {
-                    // برای تست لوکال، یک تصویر جایگزین ایجاد کن
                     createNatureFallbackImage(index);
                     loadedImages++;
                     
@@ -933,7 +1394,6 @@
                 
                 backgroundImages.push(img);
                 
-                // ایجاد thumbnail برای گالری
                 const thumb = document.createElement('img');
                 thumb.className = 'background-thumb';
                 thumb.src = img.src;
@@ -944,20 +1404,17 @@
                 thumb.addEventListener('click', () => {
                     if (currentTab !== 'gallery') return;
                     
-                    // حذف کلاس selected از همه thumbnails
                     document.querySelectorAll('.background-thumb').forEach(t => {
                         t.classList.remove('selected');
                     });
                     
-                    // اضافه کردن کلاس selected به thumbnail انتخاب شده
                     thumb.classList.add('selected');
                     
-                    // انتخاب تصویر پس‌زمینه
                     selectedBackground = backgroundImages[index];
                     userUploadedImage = null;
+                    isSlideshowMode = false;
                     updateSelectedBgInfo(`عکس ${index + 1} از طبیعت`);
                     
-                    // پیش‌نمایش سریع
                     if (!isGenerating) {
                         quickPreview();
                     }
@@ -965,39 +1422,36 @@
                 
                 backgroundGallery.appendChild(thumb);
                 
-                // اولین تصویر را selected کن
                 if (index === 0) {
                     thumb.classList.add('selected');
                 }
             });
         }
         
-        // ایجاد تصویر طبیعت جایگزین
         function createNatureFallbackImage(index) {
             const canvas = document.createElement('canvas');
             canvas.width = 800;
             canvas.height = 450;
             const ctx = canvas.getContext('2d');
             
-            // بر اساس index، موضوعات مختلف طبیعت ایجاد کن
             let gradient;
             
-            if (index < 15) { // حیوانات
+            if (index < 15) {
                 gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
                 gradient.addColorStop(0, '#8B4513');
                 gradient.addColorStop(0.5, '#A0522D');
                 gradient.addColorStop(1, '#8B4513');
-            } else if (index < 30) { // طبیعت
+            } else if (index < 30) {
                 gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
                 gradient.addColorStop(0, '#2E8B57');
                 gradient.addColorStop(0.5, '#3CB371');
                 gradient.addColorStop(1, '#2E8B57');
-            } else if (index < 40) { // دریایی
+            } else if (index < 40) {
                 gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
                 gradient.addColorStop(0, '#1E90FF');
                 gradient.addColorStop(0.5, '#00BFFF');
                 gradient.addColorStop(1, '#1E90FF');
-            } else { // گلها
+            } else {
                 gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
                 gradient.addColorStop(0, '#FF69B4');
                 gradient.addColorStop(0.5, '#FFB6C1');
@@ -1007,7 +1461,6 @@
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            // اضافه کردن متن
             ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
             ctx.font = 'bold 40px Arial';
             ctx.textAlign = 'center';
@@ -1025,7 +1478,6 @@
             img.src = canvas.toDataURL();
             backgroundImages[index] = img;
             
-            // به‌روزرسانی thumbnail
             const thumb = backgroundGallery.querySelector(`img[data-index="${index}"]`);
             if (thumb) {
                 thumb.src = img.src;
@@ -1034,31 +1486,28 @@
             return img;
         }
         
-        // به‌روزرسانی اطلاعات پس‌زمینه انتخاب شده
         function updateSelectedBgInfo(info) {
             selectedBgInfo.innerHTML = `<i class="fas fa-check-circle"></i> ${info}`;
         }
         
-        // پیش‌نمایش سریع
         function quickPreview() {
-            if (isGenerating || (!selectedBackground && !userUploadedImage)) return;
+            if (isGenerating) return;
             
             const ctx = videoCanvas.getContext('2d');
             const width = videoCanvas.width;
             const height = videoCanvas.height;
             
-            // کشیدن پس‌زمینه
-            if (userUploadedImage) {
+            if (isSlideshowMode && uploadedMultipleImages.length > 0) {
+                ctx.drawImage(uploadedMultipleImages[0].image, 0, 0, width, height);
+            } else if (userUploadedImage) {
                 ctx.drawImage(userUploadedImage, 0, 0, width, height);
             } else if (selectedBackground) {
                 ctx.drawImage(selectedBackground, 0, 0, width, height);
             }
             
-            // اضافه کردن لایه تیره برای خوانایی متن
             ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
             ctx.fillRect(0, 0, width, height);
             
-            // نمایش متن نمونه
             ctx.font = 'bold 36px "Segoe UI"';
             ctx.fillStyle = '#ffffff';
             ctx.textAlign = 'center';
@@ -1074,30 +1523,27 @@
             button.addEventListener('click', () => {
                 const tabId = button.getAttribute('data-tab');
                 
-                // حذف کلاس active از همه تب‌ها
                 tabButtons.forEach(btn => btn.classList.remove('active'));
                 tabContents.forEach(content => content.classList.remove('active'));
                 
-                // اضافه کردن کلاس active به تب انتخاب شده
                 button.classList.add('active');
                 document.getElementById(`${tabId}-tab`).classList.add('active');
                 
                 currentTab = tabId;
                 
-                // اگر تب آپلود فعال شد، عکس آپلود شده را به عنوان پس‌زمینه انتخاب کن
                 if (tabId === 'upload' && userUploadedImage) {
                     selectedBackground = userUploadedImage;
+                    isSlideshowMode = false;
                     updateSelectedBgInfo('عکس آپلود شده');
                     quickPreview();
                 } else if (tabId === 'gallery' && backgroundImages.length > 0) {
-                    // انتخاب اولین تصویر از گالری
                     const firstThumb = backgroundGallery.querySelector('.background-thumb');
                     if (firstThumb) {
                         const index = parseInt(firstThumb.dataset.index);
                         selectedBackground = backgroundImages[index];
                         userUploadedImage = null;
+                        isSlideshowMode = false;
                         
-                        // حذف selected از همه و اضافه کردن به اولین
                         document.querySelectorAll('.background-thumb').forEach(t => {
                             t.classList.remove('selected');
                         });
@@ -1119,15 +1565,13 @@
             const file = e.target.files[0];
             if (!file) return;
             
-            // بررسی نوع فایل
             if (!file.type.match('image.*')) {
                 alert('لطفا یک فایل تصویری انتخاب کنید (JPG, PNG, WebP)');
                 return;
             }
             
-            // محدودیت حجم فایل (5MB)
             if (file.size > 5 * 1024 * 1024) {
-                alert('حجم فایل باید کمتر از 5 مگابایت باشد');
+                alert('حجم فایل باید کمتر از ۵ مگابایت باشد');
                 return;
             }
             
@@ -1138,15 +1582,14 @@
                 img.onload = function() {
                     userUploadedImage = img;
                     selectedBackground = img;
+                    isSlideshowMode = false;
                     
-                    // نمایش پیش‌نمایش
                     uploadedImage.src = event.target.result;
                     uploadFileName.textContent = file.name;
                     uploadPreview.style.display = 'block';
                     
                     updateSelectedBgInfo('عکس آپلود شده');
                     
-                    // فعال کردن تب آپلود
                     document.querySelector('[data-tab="upload"]').click();
                     
                     quickPreview();
@@ -1157,16 +1600,13 @@
             reader.readAsDataURL(file);
         });
         
-        // حذف عکس آپلود شده
         removeUpload.addEventListener('click', function() {
             userUploadedImage = null;
             uploadInput.value = '';
             uploadPreview.style.display = 'none';
             
-            // بازگشت به تب گالری
             document.querySelector('[data-tab="gallery"]').click();
             
-            // انتخاب اولین تصویر از گالری
             if (backgroundImages.length > 0) {
                 const firstThumb = backgroundGallery.querySelector('.background-thumb');
                 if (firstThumb) {
@@ -1193,15 +1633,13 @@
             const file = e.target.files[0];
             if (!file) return;
             
-            // بررسی نوع فایل
             if (!file.type.match('audio.*')) {
                 alert('لطفا یک فایل صوتی انتخاب کنید (MP3, WAV, OGG)');
                 return;
             }
             
-            // محدودیت حجم فایل (10MB)
             if (file.size > 10 * 1024 * 1024) {
-                alert('حجم فایل باید کمتر از 10 مگابایت باشد');
+                alert('حجم فایل باید کمتر از ۱۰ مگابایت باشد');
                 return;
             }
             
@@ -1210,19 +1648,16 @@
             reader.onload = function(event) {
                 audioBlob = new Blob([event.target.result], { type: file.type });
                 
-                // نمایش پیش‌نمایش
                 uploadedAudio.src = URL.createObjectURL(audioBlob);
                 audioFileName.textContent = file.name;
                 audioPreview.style.display = 'block';
                 
-                // ذخیره فایل صوتی برای استفاده در ویدیو
                 userUploadedAudio = file;
             };
             
             reader.readAsArrayBuffer(file);
         });
         
-        // حذف فایل صوتی
         removeAudio.addEventListener('click', function() {
             userUploadedAudio = null;
             audioBlob = null;
@@ -1238,32 +1673,49 @@
             return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
         }
         
-        // به‌روزرسانی نمایش تایمر
         function updateTimerDisplay(elapsed, total) {
             timer.textContent = `${formatTime(elapsed)} / ${formatTime(total)}`;
         }
         
-        // تابع برای رسم متن با افکت‌های مختلف
-        function drawTextWithEffects(ctx, text, options) {
+        // تابع برای رسم متن با کیفیت بالا
+        function drawHighQualityText(ctx, text, options) {
             const {
                 width,
                 height,
                 fontSize,
                 textColor,
                 textEffect,
-                progress
+                progress,
+                currentImage
             } = options;
             
-            // کشیدن پس‌زمینه
-            if (selectedBackground && selectedBackground.complete) {
+            // کشیدن پس‌زمینه با کیفیت بالا
+            if (isSlideshowMode && currentImage) {
+                ctx.save();
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = 'high';
+                ctx.drawImage(currentImage, 0, 0, width, height);
+                ctx.restore();
+            } else if (selectedBackground && selectedBackground.complete) {
+                ctx.save();
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = 'high';
                 ctx.drawImage(selectedBackground, 0, 0, width, height);
-                
-                // اضافه کردن لایه تاریکی برای خوانایی بهتر متن
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-                ctx.fillRect(0, 0, width, height);
+                ctx.restore();
             } else {
                 ctx.fillStyle = '#000';
                 ctx.fillRect(0, 0, width, height);
+            }
+            
+            // اضافه کردن لایه تاریکی برای خوانایی بهتر متن
+            if (showTextInVideo && text.trim().length > 0) {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+                ctx.fillRect(0, 0, width, height);
+            }
+            
+            // اگر متن نمایش داده نشود یا متن خالی باشد، فقط عکس نمایش داده شود
+            if (!showTextInVideo || text.trim().length === 0) {
+                return;
             }
             
             // محاسبه تعداد کاراکترهای نمایش داده شده
@@ -1271,51 +1723,67 @@
             const charsToShow = Math.floor(totalChars * progress);
             const visibleText = text.substring(0, charsToShow);
             
-            // تنظیمات فونت
+            // تنظیمات فونت با کیفیت بالا
             ctx.font = `bold ${fontSize}px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif`;
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             
-            // اعمال افکت‌های متن
+            // اعمال افکت‌های متن با کیفیت بالا
             switch(textEffect) {
                 case 'glow':
                     ctx.shadowColor = textColor;
-                    ctx.shadowBlur = 20;
+                    ctx.shadowBlur = 30;
                     ctx.shadowOffsetX = 0;
                     ctx.shadowOffsetY = 0;
                     ctx.fillStyle = textColor;
                     break;
                     
                 case 'gradient':
-                    const gradient = ctx.createLinearGradient(width/2 - 200, height/2 - 50, width/2 + 200, height/2 + 50);
+                    const gradient = ctx.createLinearGradient(
+                        width/2 - width * 0.3, 
+                        height/2 - 50, 
+                        width/2 + width * 0.3, 
+                        height/2 + 50
+                    );
                     gradient.addColorStop(0, '#ff6b6b');
-                    gradient.addColorStop(0.5, '#4ecdc4');
+                    gradient.addColorStop(0.3, '#ffd93d');
+                    gradient.addColorStop(0.6, '#4ecdc4');
                     gradient.addColorStop(1, '#45b7d1');
                     ctx.fillStyle = gradient;
-                    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
-                    ctx.shadowBlur = 10;
-                    ctx.shadowOffsetX = 2;
-                    ctx.shadowOffsetY = 2;
+                    ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
+                    ctx.shadowBlur = 15;
+                    ctx.shadowOffsetX = 3;
+                    ctx.shadowOffsetY = 3;
                     break;
                     
-                case 'simple':
+                case 'outline':
+                    ctx.strokeStyle = '#000';
+                    ctx.lineWidth = 4;
+                    ctx.lineJoin = 'round';
                     ctx.fillStyle = textColor;
                     ctx.shadowColor = 'transparent';
-                    ctx.shadowBlur = 0;
+                    break;
+                    
+                case '3d':
+                    ctx.fillStyle = textColor;
+                    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+                    ctx.shadowBlur = 10;
+                    ctx.shadowOffsetX = 4;
+                    ctx.shadowOffsetY = 4;
                     break;
                     
                 default: // shadow
                     ctx.fillStyle = textColor;
                     ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
-                    ctx.shadowBlur = 10;
-                    ctx.shadowOffsetX = 2;
-                    ctx.shadowOffsetY = 2;
+                    ctx.shadowBlur = 12;
+                    ctx.shadowOffsetX = 3;
+                    ctx.shadowOffsetY = 3;
                     break;
             }
             
             // شکستن خطوط متن
             const maxWidth = width * 0.85;
-            const lineHeight = fontSize * 1.5;
+            const lineHeight = fontSize * 1.6;
             
             const lines = [];
             let currentLine = '';
@@ -1336,114 +1804,141 @@
                 lines.push(currentLine);
             }
             
-            // رسم خطوط متن
+            // رسم خطوط متن با کیفیت بالا
             const startY = height / 2 - (lines.length - 1) * lineHeight / 2;
             
             lines.forEach((line, index) => {
                 const y = startY + index * lineHeight;
-                ctx.fillText(line, width / 2, y);
-            });
-            
-            // رسم مکان‌نما (اگر متن کامل نشده)
-            if (charsToShow < totalChars) {
-                const lastLine = lines[lines.length - 1];
-                const metrics = ctx.measureText(lastLine);
-                const cursorX = width / 2 + metrics.width / 2 + 5;
-                const cursorY = startY + (lines.length - 1) * lineHeight - fontSize * 0.2;
                 
-                ctx.fillStyle = textColor;
-                ctx.shadowColor = 'transparent';
-                ctx.shadowBlur = 0;
-                ctx.fillRect(cursorX, cursorY, 3, fontSize * 0.8);
-            }
+                if (textEffect === 'outline') {
+                    ctx.strokeText(line, width / 2, y);
+                    ctx.fillText(line, width / 2, y);
+                } else {
+                    ctx.fillText(line, width / 2, y);
+                }
+            });
             
             // بازنشانی تنظیمات سایه
             ctx.shadowColor = 'transparent';
             ctx.shadowBlur = 0;
             ctx.shadowOffsetX = 0;
             ctx.shadowOffsetY = 0;
+            ctx.strokeStyle = 'transparent';
         }
         
-        // تابع ایجاد ویدیو با صدا
-        async function createVideoWithAudio() {
+        // تابع ایجاد ویدیو با کیفیت بالا
+        async function createHighQualityVideo() {
             if (isGenerating) return;
             
-            if (!selectedBackground && !userUploadedImage) {
-                alert('لطفا یک پس‌زمینه انتخاب کنید یا عکس خود را آپلود کنید.');
+            if (!selectedBackground && !userUploadedImage && uploadedMultipleImages.length === 0) {
+                alert('لطفا یک پس‌زمینه انتخاب کنید، عکس خود را آپلود کنید یا چند عکس برای اسلایدشو آپلود کنید.');
                 return;
             }
             
             isGenerating = true;
             loadingIndicator.style.display = 'block';
-            loadingText.textContent = 'در حال ساخت ویدیو با صدا...';
+            loadingText.textContent = 'در حال ساخت ویدیو با کیفیت بالا...';
+            loadingDetails.textContent = 'این فرآیند ممکن است چند لحظه طول بکشد';
             generateBtn.disabled = true;
             canvasPlaceholder.style.display = 'none';
             videoCanvas.style.display = 'block';
+            progressBarContainer.style.display = 'block';
             
             // دریافت تنظیمات
-            const text = textInput.value || "متن خود را وارد کنید";
+            const text = textInput.value || "";
             const fontSize = parseInt(fontSizeSelect.value);
             const textColor = textColorSelect.value;
             const textEffect = textEffectSelect.value;
-            const duration = parseInt(durationSlider.value) * 1000; // تبدیل به میلی‌ثانیه
+            const duration = parseInt(durationSlider.value);
+            const transitionDuration = parseFloat(transitionDurationSlider.value);
+            fpsRate = parseInt(fpsRateSelect.value);
             
-            // ابعاد کانواس
+            // ابعاد کانواس بر اساس کیفیت
             const width = videoCanvas.width;
             const height = videoCanvas.height;
             
             try {
-                // شروع فرآیند ساخت ویدیو
-                loadingText.textContent = 'در حال آماده‌سازی صدا و تصویر...';
+                loadingText.textContent = 'در حال آماده‌سازی با کیفیت بالا...';
+                progressFill.style.width = '5%';
                 
-                // ایجاد MediaStream از canvas
-                const canvasStream = videoCanvas.captureStream(30);
+                // ایجاد MediaStream از canvas با کیفیت بالا
+                const canvasStream = videoCanvas.captureStream(fpsRate);
+                
+                // بهینه‌سازی کیفیت Canvas
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = 'high';
+                ctx.textRendering = 'optimizeLegibility';
+                
                 recordedChunks = [];
                 
                 // اگر صدا وجود دارد، آن را به stream اضافه کن
                 let finalStream = canvasStream;
                 
                 if (userUploadedAudio && audioBlob) {
-                    loadingText.textContent = 'در حال ترکیب صدا با ویدیو...';
+                    loadingText.textContent = 'در حال ترکیب صدا با کیفیت بالا...';
+                    progressFill.style.width = '15%';
                     
-                    // تبدیل Blob به ArrayBuffer
                     const arrayBuffer = await audioBlob.arrayBuffer();
                     
-                    // ایجاد AudioContext
-                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)({
+                        sampleRate: 48000 // کیفیت صدا بالا
+                    });
                     
-                    // decode صدا
                     audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
                     
-                    // ایجاد MediaStream از صدا
                     const audioDestination = audioContext.createMediaStreamDestination();
                     audioSource = audioContext.createBufferSource();
                     audioSource.buffer = audioBuffer;
-                    audioSource.connect(audioDestination);
                     
-                    // ترکیب streamهای صدا و تصویر
+                    // افزودن فیلترهای صوتی برای کیفیت بهتر
+                    const gainNode = audioContext.createGain();
+                    gainNode.gain.value = 1.0;
+                    
+                    audioSource.connect(gainNode);
+                    gainNode.connect(audioDestination);
+                    
                     const audioTrack = audioDestination.stream.getAudioTracks()[0];
                     const videoTrack = canvasStream.getVideoTracks()[0];
                     
                     finalStream = new MediaStream([videoTrack, audioTrack]);
                     
-                    // تنظیم مدت صدا به مدت ویدیو
-                    if (audioBuffer.duration * 1000 < duration) {
-                        // اگر صدا کوتاه‌تر است، آن را تکرار کن
+                    if (audioBuffer.duration < duration) {
                         audioSource.loop = true;
                     }
                 }
                 
-                // تنظیمات MediaRecorder
-                const mimeType = MediaRecorder.isTypeSupported('video/webm;codecs=vp9,opus') 
-                    ? 'video/webm;codecs=vp9,opus'
-                    : MediaRecorder.isTypeSupported('video/mp4') 
-                    ? 'video/mp4'
-                    : 'video/webm';
+                // پیدا کردن بهترین کدک ویدیویی
+                let mimeType;
+                let videoBitsPerSecond;
                 
-                mediaRecorder = new MediaRecorder(finalStream, { 
+                if (MediaRecorder.isTypeSupported('video/mp4;codecs=avc1.640028')) {
+                    // H.264 High Profile
+                    mimeType = 'video/mp4;codecs=avc1.640028';
+                    videoBitsPerSecond = videoQuality >= 1440 ? 8000000 : 5000000;
+                } else if (MediaRecorder.isTypeSupported('video/webm;codecs=vp9')) {
+                    // VP9 (کیفیت بهتر)
+                    mimeType = 'video/webm;codecs=vp9';
+                    videoBitsPerSecond = videoQuality >= 1440 ? 10000000 : 6000000;
+                } else if (MediaRecorder.isTypeSupported('video/webm;codecs=vp8')) {
+                    // VP8
+                    mimeType = 'video/webm;codecs=vp8';
+                    videoBitsPerSecond = 4000000;
+                } else {
+                    mimeType = 'video/webm';
+                    videoBitsPerSecond = 3000000;
+                }
+                
+                loadingDetails.textContent = `استفاده از کدک: ${mimeType.includes('avc1') ? 'H.264 (کیفیت بالا)' : 'VP9 (کیفیت بهینه)'}`;
+                progressFill.style.width = '25%';
+                
+                // تنظیمات MediaRecorder با کیفیت بالا
+                const recorderOptions = { 
                     mimeType,
-                    videoBitsPerSecond: 2500000 // کیفیت بالا
-                });
+                    videoBitsPerSecond,
+                    audioBitsPerSecond: 192000 // کیفیت صدا 192kbps
+                };
+                
+                mediaRecorder = new MediaRecorder(finalStream, recorderOptions);
                 
                 mediaRecorder.ondataavailable = (event) => {
                     if (event.data.size > 0) {
@@ -1462,17 +1957,21 @@
                     downloadBtn.onclick = () => {
                         const a = document.createElement('a');
                         a.href = url;
-                        a.download = `ویدیو-حرفه‌ای-${Date.now()}.${mediaRecorder.mimeType.includes('mp4') ? 'mp4' : 'webm'}`;
+                        const extension = mediaRecorder.mimeType.includes('mp4') ? 'mp4' : 'webm';
+                        const qualityLabel = videoQuality === 2160 ? '4K' : videoQuality === 1440 ? '2K' : `${videoQuality}p`;
+                        a.download = `ویدیو-${qualityLabel}-${Date.now()}.${extension}`;
                         document.body.appendChild(a);
                         a.click();
                         document.body.removeChild(a);
+                        setTimeout(() => URL.revokeObjectURL(url), 1000);
                     };
                     
                     isGenerating = false;
                     loadingIndicator.style.display = 'none';
                     generateBtn.disabled = false;
+                    progressBarContainer.style.display = 'none';
                     
-                    // پاکسازی صدا
+                    // پاکسازی منابع
                     if (audioSource) {
                         audioSource.stop();
                         audioSource.disconnect();
@@ -1480,10 +1979,13 @@
                     if (audioContext && audioContext.state !== 'closed') {
                         audioContext.close();
                     }
+                    
+                    loadingText.textContent = 'ویدیو با موفقیت ساخته شد!';
+                    loadingDetails.textContent = 'حالا می‌توانید ویدیو را دانلود کنید';
                 };
                 
                 // شروع ضبط
-                mediaRecorder.start();
+                mediaRecorder.start(1000); // ارسال داده هر 1 ثانیه
                 startTime = Date.now();
                 
                 // شروع پخش صدا (اگر وجود دارد)
@@ -1491,26 +1993,49 @@
                     audioSource.start();
                 }
                 
-                // تابع انیمیشن
+                // محاسبه پیشرفت
+                let frameCount = 0;
+                const totalFrames = duration * fpsRate;
+                const transitionFrames = transitionDuration * fpsRate;
+                
+                // تابع انیمیشن با کیفیت بالا
                 function animate() {
                     const elapsed = Date.now() - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
+                    const progress = Math.min(elapsed / (duration * 1000), 1);
                     
                     // به‌روزرسانی تایمر
-                    updateTimerDisplay(elapsed / 1000, duration / 1000);
+                    updateTimerDisplay(elapsed / 1000, duration);
                     
-                    // رسم انیمیشن
-                    drawTextWithEffects(ctx, text, {
+                    // به‌روزرسانی نوار پیشرفت
+                    frameCount++;
+                    const processingProgress = Math.min((frameCount / totalFrames) * 100, 100);
+                    progressFill.style.width = processingProgress + '%';
+                    
+                    // انتخاب تصویر برای نمایش (اسلایدشو)
+                    let currentImage = null;
+                    if (isSlideshowMode && uploadedMultipleImages.length > 0) {
+                        const totalSlides = uploadedMultipleImages.length;
+                        const currentFrame = Math.floor(elapsed / 1000 * fpsRate);
+                        const slideIndex = Math.floor(currentFrame / transitionFrames) % totalSlides;
+                        currentImage = uploadedMultipleImages[slideIndex].image;
+                    }
+                    
+                    // رسم با کیفیت بالا
+                    drawHighQualityText(ctx, text, {
                         width,
                         height,
                         fontSize,
                         textColor,
                         textEffect,
-                        progress
+                        progress,
+                        currentImage
                     });
                     
                     if (progress < 1) {
-                        animationId = requestAnimationFrame(animate);
+                        // استفاده از requestAnimationFrame با تنظیم FPS
+                        setTimeout(() => {
+                            animationId = requestAnimationFrame(animate);
+                        }, 1000 / fpsRate);
                     } else {
                         cancelAnimationFrame(animationId);
                         
@@ -1519,11 +2044,15 @@
                             audioSource.stop();
                         }
                         
-                        // توقف ضبط
+                        // توقف ضبط با تأخیر برای اطمینان از کامل شدن
                         setTimeout(() => {
-                            mediaRecorder.stop();
-                            updateTimerDisplay(duration / 1000, duration / 1000);
-                        }, 500);
+                            if (mediaRecorder.state === 'recording') {
+                                mediaRecorder.stop();
+                                updateTimerDisplay(duration, duration);
+                                loadingText.textContent = 'ویدیو با کیفیت بالا ساخته شد!';
+                                loadingDetails.textContent = 'در حال ذخیره‌سازی فایل نهایی...';
+                            }
+                        }, 1000);
                     }
                 }
                 
@@ -1533,11 +2062,14 @@
             } catch (error) {
                 console.error('خطا در ساخت ویدیو:', error);
                 loadingText.textContent = 'خطا در ساخت ویدیو. لطفا دوباره تلاش کنید.';
+                loadingDetails.textContent = error.message;
+                
                 setTimeout(() => {
                     loadingIndicator.style.display = 'none';
                     isGenerating = false;
                     generateBtn.disabled = false;
-                }, 2000);
+                    progressBarContainer.style.display = 'none';
+                }, 3000);
                 
                 // پاکسازی در صورت خطا
                 if (audioSource) {
@@ -1551,33 +2083,12 @@
         }
         
         // رویدادها
-        generateBtn.addEventListener('click', createVideoWithAudio);
+        generateBtn.addEventListener('click', createHighQualityVideo);
         
         // بارگذاری عکس‌های طبیعت واقعی
         loadRealNatureBackgrounds();
         
-        // نمونه متن‌های پیشنهادی
-        const sampleTexts = [
-            "🌿 زیبایی‌های طبیعت 🌸\n\nطبیعت بهترین هنرمند است:\n• کوه‌های سر به فلک کشیده\n• جنگل‌های انبوه و سبز\n• رودخانه‌های خروشان\n• حیوانات زیبا و دوست‌داشتنی\n\nبیایید از طبیعت حفاظت کنیم!",
-            "🐬 دنیای زیر آب 🐠\n\nاقیانوس‌ها پر از شگفتی هستند:\n• دلفین‌های باهوش\n• نهنگ‌های عظیم\n• مرجان‌های رنگارنگ\n• ماهی‌های کوچک و بزرگ\n\nحفاظت از دریاها وظیفه همه ماست.",
-            "🦁 پادشاهان حیات وحش 🐯\n\nحیوانات وحشی نشانه قدرت طبیعت:\n• شیر: سلطان جنگل\n• ببر: نماد قدرت\n• فیل: حافظه قوی\n• پاندا: نماد صلح\n\nبیایید از آنها محافظت کنیم."
-        ];
-        
-        // اضافه کردن دکمه‌های متن نمونه
-        const sampleButtons = document.createElement('div');
-        sampleButtons.style.marginTop = '15px';
-        sampleButtons.innerHTML = `
-            <p style="margin-bottom: 10px; color: #a0c8ff; font-size: 0.9rem;">متن‌های نمونه طبیعت و حیوانات:</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                ${sampleTexts.map((text, index) => 
-                    `<button class="btn-secondary" style="padding: 6px 10px; font-size: 0.8rem; min-width: auto; border-radius: 8px;" onclick="document.getElementById('textInput').value = '${text.replace(/\n/g, '\\n').replace(/'/g, "\\'")}'">مثال ${index + 1}</button>`
-                ).join('')}
-            </div>
-        `;
-        
-        textInput.parentNode.insertBefore(sampleButtons, textInput.nextSibling);
-        
-        // پیش‌نمایش اولیه پس از بارگذاری
+        // پیش‌نمایش اولیه
         setTimeout(() => {
             if (!isGenerating && selectedBackground) {
                 quickPreview();
@@ -1601,7 +2112,10 @@
         }, false);
         
         // به‌روزرسانی اولیه تایمر
-        updateTimerDisplay(0, 10);
+        updateTimerDisplay(0, 15);
+        
+        // تنظیم کیفیت اولیه
+        setCanvasQuality(1080);
     </script>
 </body>
 </html>
