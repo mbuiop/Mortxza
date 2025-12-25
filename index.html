@@ -569,6 +569,65 @@
             text-align: center;
         }
         
+        .selected-images-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 8px;
+            max-height: 150px;
+            overflow-y: auto;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+        
+        .selected-image-item {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            height: 50px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        }
+        
+        .selected-image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .remove-selected-image {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            background: rgba(255, 107, 107, 0.8);
+            color: white;
+            border: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .remove-selected-image:hover {
+            background: rgba(255, 107, 107, 1);
+            transform: scale(1.1);
+        }
+        
+        .selected-count {
+            background: rgba(255, 107, 107, 0.2);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            text-align: center;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+        
         @media (max-width: 768px) {
             textarea, select, input, button {
                 font-size: 16px !important;
@@ -579,13 +638,13 @@
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-video"></i> تبدیل متن به ویدیو حرفه‌ای</h1>
-            <p class="subtitle">با عکس‌های واقعی، امکان صداگذاری و مدت ۲۰ ثانیه</p>
+            <h1><i class="fas fa-video"></i> ساخت ویدیو اسلایدشو حرفه‌ای</h1>
+            <p class="subtitle">با چندین عکس واقعی، امکان صداگذاری و مدت ۲۰ ثانیه</p>
             
             <div class="social-badges">
                 <div class="social-badge">
-                    <i class="fas fa-image" style="color: #4ecdc4;"></i>
-                    ۵۰ عکس واقعی
+                    <i class="fas fa-images" style="color: #4ecdc4;"></i>
+                    چندین عکس
                 </div>
                 <div class="social-badge">
                     <i class="fas fa-music" style="color: #ff6b6b;"></i>
@@ -595,6 +654,10 @@
                     <i class="fas fa-clock" style="color: #ffd93d;"></i>
                     تا ۲۰ ثانیه
                 </div>
+                <div class="social-badge">
+                    <i class="fas fa-font" style="color: #ffd93d;"></i>
+                    متن اختیاری
+                </div>
             </div>
         </header>
         
@@ -602,7 +665,7 @@
             <section class="input-section">
                 <h2 class="section-title"><i class="fas fa-edit"></i> متن و تنظیمات</h2>
                 
-                <textarea id="textInput" placeholder="متن خود را اینجا وارد کنید...">🐘 حیات وحش شگفت‌انگیز 🦁
+                <textarea id="textInput" placeholder="متن دلخواه خود را اینجا وارد کنید (اختیاری)">🐘 حیات وحش شگفت‌انگیز 🦁
 
 طبیعت پر از زیبایی‌های حیرت‌انگیز است:
 • فیل‌های باشکوه در آفریقا
@@ -686,7 +749,12 @@
                     </div>
                     
                     <div class="tab-content active" id="gallery-tab">
-                        <h3 class="gallery-title"><i class="fas fa-paw"></i> ۵۰ عکس واقعی از طبیعت و حیوانات</h3>
+                        <h3 class="gallery-title"><i class="fas fa-paw"></i> ۵۰ عکس واقعی از طبیعت و حیوانات (چند انتخابی)</h3>
+                        
+                        <div class="selected-images-list" id="gallerySelectedList">
+                            <!-- عکس‌های انتخاب شده از گالری در اینجا نمایش داده می‌شوند -->
+                        </div>
+                        
                         <div class="gallery-container" id="backgroundGallery">
                             <!-- تصاویر واقعی در اینجا اضافه می‌شوند -->
                         </div>
@@ -696,25 +764,19 @@
                         <div class="upload-section">
                             <div class="upload-btn" id="uploadTrigger">
                                 <i class="fas fa-cloud-upload-alt"></i>
-                                <span>برای آپلود عکس کلیک کنید</span>
-                                <span style="font-size: 0.8rem; margin-top: 5px; color: #888;">فرمت‌های مجاز: JPG, PNG, WebP</span>
+                                <span>برای آپلود عکس کلیک کنید (چند انتخابی)</span>
+                                <span style="font-size: 0.8rem; margin-top: 5px; color: #888;">حداکثر ۱۰ عکس • فرمت‌های مجاز: JPG, PNG, WebP</span>
                             </div>
-                            <input type="file" id="uploadInput" accept="image/*">
+                            <input type="file" id="uploadInput" accept="image/*" multiple>
                             
-                            <div class="upload-preview" id="uploadPreview">
-                                <img id="uploadedImage" alt="عکس آپلود شده">
-                                <div class="upload-info">
-                                    <span id="uploadFileName">عکس انتخابی</span>
-                                    <button class="remove-upload" id="removeUpload">
-                                        <i class="fas fa-trash"></i> حذف
-                                    </button>
-                                </div>
+                            <div class="selected-images-list" id="uploadSelectedList">
+                                <!-- عکس‌های آپلود شده در اینجا نمایش داده می‌شوند -->
                             </div>
                         </div>
                     </div>
                     
-                    <div class="selected-bg-info" id="selectedBgInfo">
-                        در حال بارگذاری ۵۰ عکس واقعی از طبیعت و حیوانات...
+                    <div class="selected-count" id="selectedCount">
+                        هیچ عکسی انتخاب نشده است
                     </div>
                 </div>
                 
@@ -757,14 +819,13 @@
         <section class="info-section">
             <h3 class="info-title"><i class="fas fa-lightbulb"></i> راهنمای کامل ساخت ویدیو حرفه‌ای</h3>
             <ul class="info-list">
-                <li><strong>متن جذاب بنویسید:</strong> از متن نمونه حیات وحش استفاده کنید یا متن خود را بنویسید</li>
+                <li><strong>متن کاملاً اختیاری:</strong> می‌توانید متن بنویسید یا اصلاً متنی ننویسید. ویدیو در هر صورت ساخته می‌شود</li>
+                <li><strong>انتخاب چند عکس:</strong> از 50 عکس واقعی حیوانات و طبیعت چند عکس انتخاب کنید یا عکس‌های خود را آپلود کنید</li>
                 <li><strong>تنظیم مدت زمان:</strong> با اسلایدر مدت ویدیو را از 5 تا 20 ثانیه تنظیم کنید</li>
-                <li><strong>انتخاب پس‌زمینه:</strong> از 50 عکس واقعی حیوانات و طبیعت انتخاب کنید یا عکس خود را آپلود کنید</li>
                 <li><strong>افزودن صدا (اختیاری):</strong> فایل صوتی MP3, WAV یا OGG آپلود کنید تا روی ویدیو پخش شود</li>
-                <li><strong>تنظیمات متن:</strong> اندازه، رنگ و افکت متن را تنظیم کنید</li>
-                <li><strong>ایجاد ویدیو:</strong> روی دکمه "ایجاد ویدیو" کلیک کنید تا ویدیو با صدا ساخته شود</li>
+                <li><strong>تنظیمات متن:</strong> اگر متن نوشتید، اندازه، رنگ و افکت متن را تنظیم کنید</li>
+                <li><strong>ایجاد ویدیو:</strong> روی دکمه "ایجاد ویدیو" کلیک کنید تا ویدیو ساخته شود</li>
                 <li><strong>دانلود:</strong> ویدیوی نهایی را با کیفیت HD و صدای ضبط شده دانلود کنید</li>
-                <li><strong>اشتراک‌گذاری:</strong> ویدیو را در شبکه‌های اجتماعی مانند اینستاگرام، تلگرام و... منتشر کنید</li>
             </ul>
         </section>
     </div>
@@ -785,15 +846,13 @@
         const loadingText = document.getElementById('loadingText');
         const canvasPlaceholder = document.getElementById('canvasPlaceholder');
         const backgroundGallery = document.getElementById('backgroundGallery');
-        const selectedBgInfo = document.getElementById('selectedBgInfo');
+        const selectedCount = document.getElementById('selectedCount');
+        const gallerySelectedList = document.getElementById('gallerySelectedList');
+        const uploadSelectedList = document.getElementById('uploadSelectedList');
         
         // عناصر آپلود
         const uploadInput = document.getElementById('uploadInput');
         const uploadTrigger = document.getElementById('uploadTrigger');
-        const uploadPreview = document.getElementById('uploadPreview');
-        const uploadedImage = document.getElementById('uploadedImage');
-        const uploadFileName = document.getElementById('uploadFileName');
-        const removeUpload = document.getElementById('removeUpload');
         
         // عناصر صدا
         const audioInput = document.getElementById('audioInput');
@@ -814,16 +873,16 @@
         let startTime = null;
         let isGenerating = false;
         let ctx = videoCanvas.getContext('2d');
-        let selectedBackground = null;
-        let backgroundImages = [];
+        let selectedImages = []; // لیست عکس‌های انتخاب شده
+        let backgroundImages = []; // عکس‌های گالری
         let loadedImages = 0;
-        let userUploadedImage = null;
         let userUploadedAudio = null;
         let audioBlob = null;
         let currentTab = 'gallery';
         let audioContext = null;
         let audioBuffer = null;
         let audioSource = null;
+        let currentImageIndex = 0; // شاخص عکس فعلی در نمایش
         
         // تنظیمات اولیه
         videoCanvas.style.display = 'none';
@@ -897,22 +956,20 @@
         
         // بارگذاری عکس‌های واقعی
         function loadRealNatureBackgrounds() {
-            selectedBgInfo.innerHTML = '<i class="fas fa-spinner fa-spin"></i> در حال بارگذاری ۵۰ عکس واقعی از طبیعت و حیوانات...';
+            selectedCount.innerHTML = '<i class="fas fa-spinner fa-spin"></i> در حال بارگذاری ۵۰ عکس واقعی...';
             
             realNatureBackgrounds.forEach((url, index) => {
                 const img = new Image();
                 img.crossOrigin = "anonymous";
                 img.src = url + "&fit=crop&w=400&h=300&q=85";
+                img.dataset.index = index;
                 
                 img.onload = () => {
                     loadedImages++;
-                    if (loadedImages === 1 && currentTab === 'gallery') {
-                        selectedBackground = img;
-                        updateSelectedBgInfo(`عکس ۱ از طبیعت`);
-                    }
+                    backgroundImages.push(img);
                     
                     if (loadedImages === realNatureBackgrounds.length) {
-                        selectedBgInfo.innerHTML = `<i class="fas fa-check-circle"></i> ${loadedImages} عکس واقعی بارگذاری شد`;
+                        updateSelectedCount();
                     }
                 };
                 
@@ -921,17 +978,10 @@
                     createNatureFallbackImage(index);
                     loadedImages++;
                     
-                    if (loadedImages === 1 && currentTab === 'gallery') {
-                        selectedBackground = backgroundImages[index];
-                        updateSelectedBgInfo(`عکس ۱ از طبیعت`);
-                    }
-                    
                     if (loadedImages === realNatureBackgrounds.length) {
-                        selectedBgInfo.innerHTML = `<i class="fas fa-check-circle"></i> ${loadedImages} عکس واقعی بارگذاری شد`;
+                        updateSelectedCount();
                     }
                 };
-                
-                backgroundImages.push(img);
                 
                 // ایجاد thumbnail برای گالری
                 const thumb = document.createElement('img');
@@ -944,31 +994,43 @@
                 thumb.addEventListener('click', () => {
                     if (currentTab !== 'gallery') return;
                     
-                    // حذف کلاس selected از همه thumbnails
-                    document.querySelectorAll('.background-thumb').forEach(t => {
-                        t.classList.remove('selected');
-                    });
+                    // بررسی وجود عکس در لیست انتخاب شده
+                    const existingIndex = selectedImages.findIndex(item => 
+                        item.type === 'gallery' && item.index === index
+                    );
                     
-                    // اضافه کردن کلاس selected به thumbnail انتخاب شده
-                    thumb.classList.add('selected');
+                    if (existingIndex >= 0) {
+                        // حذف عکس از لیست انتخاب شده
+                        selectedImages.splice(existingIndex, 1);
+                        thumb.classList.remove('selected');
+                    } else {
+                        // اضافه کردن عکس به لیست انتخاب شده
+                        if (selectedImages.length >= 10) {
+                            alert('حداکثر ۱۰ عکس می‌توانید انتخاب کنید');
+                            return;
+                        }
+                        
+                        selectedImages.push({
+                            type: 'gallery',
+                            index: index,
+                            image: img,
+                            src: img.src,
+                            title: `عکس طبیعت ${index + 1}`
+                        });
+                        thumb.classList.add('selected');
+                    }
                     
-                    // انتخاب تصویر پس‌زمینه
-                    selectedBackground = backgroundImages[index];
-                    userUploadedImage = null;
-                    updateSelectedBgInfo(`عکس ${index + 1} از طبیعت`);
+                    // نمایش عکس‌های انتخاب شده
+                    displaySelectedImages();
+                    updateSelectedCount();
                     
                     // پیش‌نمایش سریع
-                    if (!isGenerating) {
+                    if (!isGenerating && selectedImages.length > 0) {
                         quickPreview();
                     }
                 });
                 
                 backgroundGallery.appendChild(thumb);
-                
-                // اولین تصویر را selected کن
-                if (index === 0) {
-                    thumb.classList.add('selected');
-                }
             });
         }
         
@@ -1023,6 +1085,7 @@
             
             const img = new Image();
             img.src = canvas.toDataURL();
+            img.dataset.index = index;
             backgroundImages[index] = img;
             
             // به‌روزرسانی thumbnail
@@ -1034,24 +1097,93 @@
             return img;
         }
         
-        // به‌روزرسانی اطلاعات پس‌زمینه انتخاب شده
-        function updateSelectedBgInfo(info) {
-            selectedBgInfo.innerHTML = `<i class="fas fa-check-circle"></i> ${info}`;
+        // نمایش عکس‌های انتخاب شده
+        function displaySelectedImages() {
+            // پاک کردن لیست‌ها
+            gallerySelectedList.innerHTML = '';
+            uploadSelectedList.innerHTML = '';
+            
+            // نمایش عکس‌های انتخاب شده بر اساس نوع
+            selectedImages.forEach((item, idx) => {
+                const listContainer = item.type === 'gallery' ? gallerySelectedList : uploadSelectedList;
+                
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'selected-image-item';
+                
+                const img = document.createElement('img');
+                img.src = item.src;
+                img.alt = item.title;
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'remove-selected-image';
+                removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                removeBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    removeSelectedImage(idx);
+                };
+                
+                itemDiv.appendChild(img);
+                itemDiv.appendChild(removeBtn);
+                listContainer.appendChild(itemDiv);
+            });
+        }
+        
+        // حذف عکس انتخاب شده
+        function removeSelectedImage(index) {
+            // حذف از لیست selectedImages
+            const removedItem = selectedImages.splice(index, 1)[0];
+            
+            // اگر از گالری بود، selected را از thumbnail حذف کن
+            if (removedItem.type === 'gallery') {
+                const thumb = backgroundGallery.querySelector(`img[data-index="${removedItem.index}"]`);
+                if (thumb) {
+                    thumb.classList.remove('selected');
+                }
+            }
+            
+            // به‌روزرسانی نمایش
+            displaySelectedImages();
+            updateSelectedCount();
+            
+            // به‌روزرسانی پیش‌نمایش
+            if (selectedImages.length > 0) {
+                quickPreview();
+            } else {
+                canvasPlaceholder.style.display = 'block';
+                videoCanvas.style.display = 'none';
+            }
+        }
+        
+        // به‌روزرسانی تعداد عکس‌های انتخاب شده
+        function updateSelectedCount() {
+            if (selectedImages.length === 0) {
+                selectedCount.innerHTML = '<i class="fas fa-info-circle"></i> هیچ عکسی انتخاب نشده است';
+            } else {
+                selectedCount.innerHTML = `<i class="fas fa-check-circle"></i> ${selectedImages.length} عکس انتخاب شده است`;
+            }
+            
+            if (loadedImages === realNatureBackgrounds.length) {
+                selectedCount.innerHTML += ` • ${loadedImages} عکس واقعی بارگذاری شد`;
+            }
         }
         
         // پیش‌نمایش سریع
         function quickPreview() {
-            if (isGenerating || (!selectedBackground && !userUploadedImage)) return;
+            if (isGenerating || selectedImages.length === 0) return;
             
             const ctx = videoCanvas.getContext('2d');
             const width = videoCanvas.width;
             const height = videoCanvas.height;
             
-            // کشیدن پس‌زمینه
-            if (userUploadedImage) {
-                ctx.drawImage(userUploadedImage, 0, 0, width, height);
-            } else if (selectedBackground) {
-                ctx.drawImage(selectedBackground, 0, 0, width, height);
+            // کشیدن اولین عکس به عنوان پیش‌نمایش
+            const firstImage = selectedImages[0].image || selectedImages[0];
+            if (firstImage.complete) {
+                ctx.drawImage(firstImage, 0, 0, width, height);
+            } else {
+                // اگر عکس هنوز لود نشده
+                firstImage.onload = () => {
+                    ctx.drawImage(firstImage, 0, 0, width, height);
+                };
             }
             
             // اضافه کردن لایه تیره برای خوانایی متن
@@ -1063,7 +1195,10 @@
             ctx.fillStyle = '#ffffff';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText('پیش‌نمایش', width / 2, height / 2);
+            ctx.fillText('پیش‌نمایش ویدیو', width / 2, height / 2 - 20);
+            
+            ctx.font = '20px "Segoe UI"';
+            ctx.fillText(`${selectedImages.length} عکس انتخاب شده`, width / 2, height / 2 + 30);
             
             canvasPlaceholder.style.display = 'none';
             videoCanvas.style.display = 'block';
@@ -1083,30 +1218,6 @@
                 document.getElementById(`${tabId}-tab`).classList.add('active');
                 
                 currentTab = tabId;
-                
-                // اگر تب آپلود فعال شد، عکس آپلود شده را به عنوان پس‌زمینه انتخاب کن
-                if (tabId === 'upload' && userUploadedImage) {
-                    selectedBackground = userUploadedImage;
-                    updateSelectedBgInfo('عکس آپلود شده');
-                    quickPreview();
-                } else if (tabId === 'gallery' && backgroundImages.length > 0) {
-                    // انتخاب اولین تصویر از گالری
-                    const firstThumb = backgroundGallery.querySelector('.background-thumb');
-                    if (firstThumb) {
-                        const index = parseInt(firstThumb.dataset.index);
-                        selectedBackground = backgroundImages[index];
-                        userUploadedImage = null;
-                        
-                        // حذف selected از همه و اضافه کردن به اولین
-                        document.querySelectorAll('.background-thumb').forEach(t => {
-                            t.classList.remove('selected');
-                        });
-                        firstThumb.classList.add('selected');
-                        
-                        updateSelectedBgInfo(`عکس ۱ از طبیعت`);
-                        quickPreview();
-                    }
-                }
             });
         });
         
@@ -1116,72 +1227,71 @@
         });
         
         uploadInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
+            const files = e.target.files;
+            if (!files || files.length === 0) return;
             
-            // بررسی نوع فایل
-            if (!file.type.match('image.*')) {
-                alert('لطفا یک فایل تصویری انتخاب کنید (JPG, PNG, WebP)');
+            // بررسی محدودیت تعداد
+            if (files.length > 10) {
+                alert('حداکثر 10 عکس می‌توانید آپلود کنید');
                 return;
             }
             
-            // محدودیت حجم فایل (5MB)
-            if (file.size > 5 * 1024 * 1024) {
-                alert('حجم فایل باید کمتر از 5 مگابایت باشد');
+            if (selectedImages.length + files.length > 10) {
+                alert(`شما ${selectedImages.length} عکس انتخاب کرده‌اید. در مجموع نمی‌توانید بیش از 10 عکس داشته باشید.`);
                 return;
             }
             
-            const reader = new FileReader();
-            
-            reader.onload = function(event) {
-                const img = new Image();
-                img.onload = function() {
-                    userUploadedImage = img;
-                    selectedBackground = img;
-                    
-                    // نمایش پیش‌نمایش
-                    uploadedImage.src = event.target.result;
-                    uploadFileName.textContent = file.name;
-                    uploadPreview.style.display = 'block';
-                    
-                    updateSelectedBgInfo('عکس آپلود شده');
-                    
-                    // فعال کردن تب آپلود
-                    document.querySelector('[data-tab="upload"]').click();
-                    
-                    quickPreview();
-                };
-                img.src = event.target.result;
-            };
-            
-            reader.readAsDataURL(file);
-        });
-        
-        // حذف عکس آپلود شده
-        removeUpload.addEventListener('click', function() {
-            userUploadedImage = null;
-            uploadInput.value = '';
-            uploadPreview.style.display = 'none';
-            
-            // بازگشت به تب گالری
-            document.querySelector('[data-tab="gallery"]').click();
-            
-            // انتخاب اولین تصویر از گالری
-            if (backgroundImages.length > 0) {
-                const firstThumb = backgroundGallery.querySelector('.background-thumb');
-                if (firstThumb) {
-                    const index = parseInt(firstThumb.dataset.index);
-                    selectedBackground = backgroundImages[index];
-                    
-                    document.querySelectorAll('.background-thumb').forEach(t => {
-                        t.classList.remove('selected');
-                    });
-                    firstThumb.classList.add('selected');
-                    
-                    updateSelectedBgInfo(`عکس ۱ از طبیعت`);
-                    quickPreview();
+            // پردازش هر فایل
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                
+                // بررسی نوع فایل
+                if (!file.type.match('image.*')) {
+                    alert(`فایل "${file.name}" یک تصویر نیست. لطفا فقط عکس آپلود کنید.`);
+                    continue;
                 }
+                
+                // محدودیت حجم فایل (5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert(`حجم فایل "${file.name}" باید کمتر از 5 مگابایت باشد`);
+                    continue;
+                }
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(event) {
+                    const img = new Image();
+                    img.onload = function() {
+                        // اضافه کردن به لیست عکس‌های انتخاب شده
+                        selectedImages.push({
+                            type: 'upload',
+                            index: selectedImages.length,
+                            image: img,
+                            src: event.target.result,
+                            title: file.name,
+                            file: file
+                        });
+                        
+                        // نمایش عکس‌های انتخاب شده
+                        displaySelectedImages();
+                        updateSelectedCount();
+                        
+                        // فعال کردن تب آپلود
+                        document.querySelector('[data-tab="upload"]').click();
+                        
+                        // پیش‌نمایش
+                        if (!isGenerating) {
+                            quickPreview();
+                        }
+                    };
+                    img.src = event.target.result;
+                };
+                
+                reader.readAsDataURL(file);
             }
+            
+            // ریست کردن input برای امکان انتخاب مجدد
+            uploadInput.value = '';
         });
         
         // مدیریت آپلود صدا
@@ -1243,8 +1353,8 @@
             timer.textContent = `${formatTime(elapsed)} / ${formatTime(total)}`;
         }
         
-        // تابع برای رسم متن با افکت‌های مختلف
-        function drawTextWithEffects(ctx, text, options) {
+        // تابع برای رسم ویدیو (با یا بدون متن)
+        function drawVideoFrame(ctx, text, options) {
             const {
                 width,
                 height,
@@ -1254,16 +1364,37 @@
                 progress
             } = options;
             
-            // کشیدن پس‌زمینه
-            if (selectedBackground && selectedBackground.complete) {
-                ctx.drawImage(selectedBackground, 0, 0, width, height);
+            // اگر عکسی انتخاب شده، آن را بکش
+            if (selectedImages.length > 0) {
+                // محاسبه عکس فعلی بر اساس progress
+                const totalDuration = parseInt(durationSlider.value);
+                const elapsedTime = progress * totalDuration;
+                const imageDuration = totalDuration / selectedImages.length;
+                const currentImageIndex = Math.floor(elapsedTime / imageDuration) % selectedImages.length;
                 
-                // اضافه کردن لایه تاریکی برای خوانایی بهتر متن
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-                ctx.fillRect(0, 0, width, height);
+                const currentImage = selectedImages[currentImageIndex];
+                const img = currentImage.image || currentImage;
+                
+                if (img && img.complete) {
+                    ctx.drawImage(img, 0, 0, width, height);
+                    
+                    // اگر متن وجود دارد، لایه تاریک برای خوانایی اضافه کن
+                    if (text && text.trim().length > 0) {
+                        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+                        ctx.fillRect(0, 0, width, height);
+                    }
+                } else {
+                    ctx.fillStyle = '#000';
+                    ctx.fillRect(0, 0, width, height);
+                }
             } else {
                 ctx.fillStyle = '#000';
                 ctx.fillRect(0, 0, width, height);
+            }
+            
+            // اگر متن وجود ندارد، فقط عکس‌ها را نمایش بده
+            if (!text || text.trim().length === 0) {
+                return;
             }
             
             // محاسبه تعداد کاراکترهای نمایش داده شده
@@ -1368,8 +1499,8 @@
         async function createVideoWithAudio() {
             if (isGenerating) return;
             
-            if (!selectedBackground && !userUploadedImage) {
-                alert('لطفا یک پس‌زمینه انتخاب کنید یا عکس خود را آپلود کنید.');
+            if (selectedImages.length === 0) {
+                alert('لطفا حداقل یک عکس انتخاب کنید یا آپلود کنید.');
                 return;
             }
             
@@ -1381,7 +1512,7 @@
             videoCanvas.style.display = 'block';
             
             // دریافت تنظیمات
-            const text = textInput.value || "متن خود را وارد کنید";
+            const text = textInput.value.trim(); // متن ممکن است خالی باشد
             const fontSize = parseInt(fontSizeSelect.value);
             const textColor = textColorSelect.value;
             const textEffect = textEffectSelect.value;
@@ -1499,8 +1630,8 @@
                     // به‌روزرسانی تایمر
                     updateTimerDisplay(elapsed / 1000, duration / 1000);
                     
-                    // رسم انیمیشن
-                    drawTextWithEffects(ctx, text, {
+                    // رسم انیمیشن (با یا بدون متن)
+                    drawVideoFrame(ctx, text, {
                         width,
                         height,
                         fontSize,
@@ -1567,11 +1698,12 @@
         const sampleButtons = document.createElement('div');
         sampleButtons.style.marginTop = '15px';
         sampleButtons.innerHTML = `
-            <p style="margin-bottom: 10px; color: #a0c8ff; font-size: 0.9rem;">متن‌های نمونه طبیعت و حیوانات:</p>
+            <p style="margin-bottom: 10px; color: #a0c8ff; font-size: 0.9rem;">متن‌های نمونه طبیعت و حیوانات (اختیاری):</p>
             <div style="display: flex; flex-wrap: wrap; gap: 8px;">
                 ${sampleTexts.map((text, index) => 
                     `<button class="btn-secondary" style="padding: 6px 10px; font-size: 0.8rem; min-width: auto; border-radius: 8px;" onclick="document.getElementById('textInput').value = '${text.replace(/\n/g, '\\n').replace(/'/g, "\\'")}'">مثال ${index + 1}</button>`
                 ).join('')}
+                <button class="btn-secondary" style="padding: 6px 10px; font-size: 0.8rem; min-width: auto; border-radius: 8px; background: rgba(255,107,107,0.2);" onclick="document.getElementById('textInput').value = ''">حذف متن</button>
             </div>
         `;
         
@@ -1579,10 +1711,29 @@
         
         // پیش‌نمایش اولیه پس از بارگذاری
         setTimeout(() => {
-            if (!isGenerating && selectedBackground) {
+            if (!isGenerating && selectedImages.length === 0 && backgroundImages.length > 0) {
+                // اضافه کردن 3 عکس اول از گالری به عنوان نمونه
+                for (let i = 0; i < Math.min(3, backgroundImages.length); i++) {
+                    selectedImages.push({
+                        type: 'gallery',
+                        index: i,
+                        image: backgroundImages[i],
+                        src: backgroundImages[i].src,
+                        title: `عکس طبیعت ${i + 1}`
+                    });
+                    
+                    // علامت زدن thumbnail
+                    const thumb = backgroundGallery.querySelector(`img[data-index="${i}"]`);
+                    if (thumb) {
+                        thumb.classList.add('selected');
+                    }
+                }
+                
+                displaySelectedImages();
+                updateSelectedCount();
                 quickPreview();
             }
-        }, 1500);
+        }, 2000);
         
         // جلوگیری از زوم روی موبایل
         document.addEventListener('touchstart', function(e) {
