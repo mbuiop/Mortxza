@@ -572,7 +572,6 @@
             text-align: center;
         }
         
-        /* اسلایدشو جدید */
         .slideshow-controls {
             margin-top: 15px;
             padding: 15px;
@@ -736,7 +735,7 @@
             <section class="input-section">
                 <h2 class="section-title"><i class="fas fa-edit"></i> متن و تنظیمات</h2>
                 
-                <textarea id="textInput" placeholder="متن خود را اینجا وارد کنید...">🐘 حیات وحش شگفت‌انگیز 🦁
+                <textarea id="textInput" placeholder="متن خود را اینجا وارد کنید (اختیاری) - اگر متن خالی باشد، در ویدیو نمایش داده نمی‌شود">🐘 حیات وحش شگفت‌انگیز 🦁
 
 طبیعت پر از زیبایی‌های حیرت‌انگیز است:
 • فیل‌های باشکوه در آفریقا
@@ -929,7 +928,7 @@
         <section class="info-section">
             <h3 class="info-title"><i class="fas fa-lightbulb"></i> راهنمای کامل ساخت ویدیو حرفه‌ای</h3>
             <ul class="info-list">
-                <li><strong>متن جذاب بنویسید:</strong> از متن نمونه حیات وحش استفاده کنید یا متن خود را بنویسید</li>
+                <li><strong>متن اختیاری:</strong> متن را وارد کنید یا خالی بگذارید. اگر متن خالی باشد، فقط تصاویر نمایش داده می‌شود</li>
                 <li><strong>آپلود چند عکس:</strong> تا 20 عکس آپلود کنید تا اسلایدشو بسازید</li>
                 <li><strong>تنظیم مدت زمان:</strong> با اسلایدر مدت ویدیو را از 5 تا 600 ثانیه تنظیم کنید</li>
                 <li><strong>انتخاب پس‌زمینه:</strong> از 50 عکس واقعی حیوانات و طبیعت انتخاب کنید یا عکس خود را آپلود کنید</li>
@@ -1023,17 +1022,8 @@
             "https://images.unsplash.com/photo-1551085254-e96b210db58a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1559253664-ca249d4608c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1551085254-e96b210db58a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1559253664-ca249d4608c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
@@ -1044,31 +1034,40 @@
             "https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1476820865390-c52aeebb9891?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
             "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-            "https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
         ];
         
         // اسلایدر مدت زمان
@@ -1359,14 +1358,18 @@
                 ctx.drawImage(selectedBackground, 0, 0, width, height);
             }
             
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
-            ctx.fillRect(0, 0, width, height);
-            
-            ctx.font = 'bold 36px "Segoe UI"';
-            ctx.fillStyle = '#ffffff';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('پیش‌نمایش', width / 2, height / 2);
+            // فقط اگر متن وجود داشته باشد overlay تیره اضافه کن
+            const text = textInput.value.trim();
+            if (text) {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+                ctx.fillRect(0, 0, width, height);
+                
+                ctx.font = 'bold 36px "Segoe UI"';
+                ctx.fillStyle = '#ffffff';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('پیش‌نمایش', width / 2, height / 2);
+            }
             
             canvasPlaceholder.style.display = 'none';
             videoCanvas.style.display = 'block';
@@ -1531,7 +1534,7 @@
             timer.textContent = `${formatTime(elapsed)} / ${formatTime(total)}`;
         }
         
-        // تابع برای رسم متن با افکت‌های مختلف
+        // تابع برای رسم متن با افکت‌های مختلف - تغییر اصلی اینجا است
         function drawTextWithEffects(ctx, text, options) {
             const {
                 width,
@@ -1553,106 +1556,110 @@
                 ctx.fillRect(0, 0, width, height);
             }
             
-            // اضافه کردن لایه تاریکی برای خوانایی بهتر متن
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-            ctx.fillRect(0, 0, width, height);
-            
-            // محاسبه تعداد کاراکترهای نمایش داده شده
-            const totalChars = text.length;
-            const charsToShow = Math.floor(totalChars * progress);
-            const visibleText = text.substring(0, charsToShow);
-            
-            // تنظیمات فونت
-            ctx.font = `bold ${fontSize}px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            
-            // اعمال افکت‌های متن
-            switch(textEffect) {
-                case 'glow':
-                    ctx.shadowColor = textColor;
-                    ctx.shadowBlur = 20;
-                    ctx.shadowOffsetX = 0;
-                    ctx.shadowOffsetY = 0;
-                    ctx.fillStyle = textColor;
-                    break;
+            // فقط اگر متن وجود داشته باشد overlay تیره اضافه کن
+            if (text && text.trim().length > 0) {
+                // اضافه کردن لایه تاریکی برای خوانایی بهتر متن
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+                ctx.fillRect(0, 0, width, height);
+                
+                // محاسبه تعداد کاراکترهای نمایش داده شده
+                const totalChars = text.length;
+                const charsToShow = Math.floor(totalChars * progress);
+                const visibleText = text.substring(0, charsToShow);
+                
+                // تنظیمات فونت
+                ctx.font = `bold ${fontSize}px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                // اعمال افکت‌های متن
+                switch(textEffect) {
+                    case 'glow':
+                        ctx.shadowColor = textColor;
+                        ctx.shadowBlur = 20;
+                        ctx.shadowOffsetX = 0;
+                        ctx.shadowOffsetY = 0;
+                        ctx.fillStyle = textColor;
+                        break;
+                        
+                    case 'gradient':
+                        const gradient = ctx.createLinearGradient(width/2 - 200, height/2 - 50, width/2 + 200, height/2 + 50);
+                        gradient.addColorStop(0, '#ff6b6b');
+                        gradient.addColorStop(0.5, '#4ecdc4');
+                        gradient.addColorStop(1, '#45b7d1');
+                        ctx.fillStyle = gradient;
+                        ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+                        ctx.shadowBlur = 10;
+                        ctx.shadowOffsetX = 2;
+                        ctx.shadowOffsetY = 2;
+                        break;
+                        
+                    case 'simple':
+                        ctx.fillStyle = textColor;
+                        ctx.shadowColor = 'transparent';
+                        ctx.shadowBlur = 0;
+                        break;
+                        
+                    default: // shadow
+                        ctx.fillStyle = textColor;
+                        ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+                        ctx.shadowBlur = 10;
+                        ctx.shadowOffsetX = 2;
+                        ctx.shadowOffsetY = 2;
+                        break;
+                }
+                
+                // شکستن خطوط متن
+                const maxWidth = width * 0.85;
+                const lineHeight = fontSize * 1.5;
+                
+                const lines = [];
+                let currentLine = '';
+                
+                for (const word of visibleText.split(' ')) {
+                    const testLine = currentLine ? `${currentLine} ${word}` : word;
+                    const metrics = ctx.measureText(testLine);
                     
-                case 'gradient':
-                    const gradient = ctx.createLinearGradient(width/2 - 200, height/2 - 50, width/2 + 200, height/2 + 50);
-                    gradient.addColorStop(0, '#ff6b6b');
-                    gradient.addColorStop(0.5, '#4ecdc4');
-                    gradient.addColorStop(1, '#45b7d1');
-                    ctx.fillStyle = gradient;
-                    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
-                    ctx.shadowBlur = 10;
-                    ctx.shadowOffsetX = 2;
-                    ctx.shadowOffsetY = 2;
-                    break;
+                    if (metrics.width > maxWidth && currentLine) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = testLine;
+                    }
+                }
+                
+                if (currentLine) {
+                    lines.push(currentLine);
+                }
+                
+                // رسم خطوط متن
+                const startY = height / 2 - (lines.length - 1) * lineHeight / 2;
+                
+                lines.forEach((line, index) => {
+                    const y = startY + index * lineHeight;
+                    ctx.fillText(line, width / 2, y);
+                });
+                
+                // رسم مکان‌نما (اگر متن کامل نشده)
+                if (charsToShow < totalChars) {
+                    const lastLine = lines[lines.length - 1];
+                    const metrics = ctx.measureText(lastLine);
+                    const cursorX = width / 2 + metrics.width / 2 + 5;
+                    const cursorY = startY + (lines.length - 1) * lineHeight - fontSize * 0.2;
                     
-                case 'simple':
                     ctx.fillStyle = textColor;
                     ctx.shadowColor = 'transparent';
                     ctx.shadowBlur = 0;
-                    break;
-                    
-                default: // shadow
-                    ctx.fillStyle = textColor;
-                    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
-                    ctx.shadowBlur = 10;
-                    ctx.shadowOffsetX = 2;
-                    ctx.shadowOffsetY = 2;
-                    break;
-            }
-            
-            // شکستن خطوط متن
-            const maxWidth = width * 0.85;
-            const lineHeight = fontSize * 1.5;
-            
-            const lines = [];
-            let currentLine = '';
-            
-            for (const word of visibleText.split(' ')) {
-                const testLine = currentLine ? `${currentLine} ${word}` : word;
-                const metrics = ctx.measureText(testLine);
-                
-                if (metrics.width > maxWidth && currentLine) {
-                    lines.push(currentLine);
-                    currentLine = word;
-                } else {
-                    currentLine = testLine;
+                    ctx.fillRect(cursorX, cursorY, 3, fontSize * 0.8);
                 }
-            }
-            
-            if (currentLine) {
-                lines.push(currentLine);
-            }
-            
-            // رسم خطوط متن
-            const startY = height / 2 - (lines.length - 1) * lineHeight / 2;
-            
-            lines.forEach((line, index) => {
-                const y = startY + index * lineHeight;
-                ctx.fillText(line, width / 2, y);
-            });
-            
-            // رسم مکان‌نما (اگر متن کامل نشده)
-            if (charsToShow < totalChars) {
-                const lastLine = lines[lines.length - 1];
-                const metrics = ctx.measureText(lastLine);
-                const cursorX = width / 2 + metrics.width / 2 + 5;
-                const cursorY = startY + (lines.length - 1) * lineHeight - fontSize * 0.2;
                 
-                ctx.fillStyle = textColor;
+                // بازنشانی تنظیمات سایه
                 ctx.shadowColor = 'transparent';
                 ctx.shadowBlur = 0;
-                ctx.fillRect(cursorX, cursorY, 3, fontSize * 0.8);
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 0;
             }
-            
-            // بازنشانی تنظیمات سایه
-            ctx.shadowColor = 'transparent';
-            ctx.shadowBlur = 0;
-            ctx.shadowOffsetX = 0;
-            ctx.shadowOffsetY = 0;
+            // اگر متن وجود نداشته باشد، فقط تصویر نمایش داده می‌شود
         }
         
         // تابع ایجاد ویدیو با صدا
@@ -1673,7 +1680,7 @@
             progressBarContainer.style.display = 'block';
             
             // دریافت تنظیمات
-            const text = textInput.value || "متن خود را وارد کنید";
+            const text = textInput.value || "";
             const fontSize = parseInt(fontSizeSelect.value);
             const textColor = textColorSelect.value;
             const textEffect = textEffectSelect.value;
@@ -1805,7 +1812,7 @@
                         currentImage = uploadedMultipleImages[slideIndex].image;
                     }
                     
-                    // رسم انیمیشن
+                    // رسم انیمیشن - متن فقط اگر وجود داشته باشد نمایش داده می‌شود
                     drawTextWithEffects(ctx, text, {
                         width,
                         height,
@@ -1869,17 +1876,18 @@
         const sampleTexts = [
             "🌿 زیبایی‌های طبیعت 🌸\n\nطبیعت بهترین هنرمند است:\n• کوه‌های سر به فلک کشیده\n• جنگل‌های انبوه و سبز\n• رودخانه‌های خروشان\n• حیوانات زیبا و دوست‌داشتنی\n\nبیایید از طبیعت حفاظت کنیم!",
             "🐬 دنیای زیر آب 🐠\n\nاقیانوس‌ها پر از شگفتی هستند:\n• دلفین‌های باهوش\n• نهنگ‌های عظیم\n• مرجان‌های رنگارنگ\n• ماهی‌های کوچک و بزرگ\n\nحفاظت از دریاها وظیفه همه ماست.",
-            "🦁 پادشاهان حیات وحش 🐯\n\nحیوانات وحشی نشانه قدرت طبیعت:\n• شیر: سلطان جنگل\n• ببر: نماد قدرت\n• فیل: حافظه قوی\n• پاندا: نماد صلح\n\nبیایید از آنها محافظت کنیم."
+            "🦁 پادشاهان حیات وحش 🐯\n\nحیوانات وحشی نشانه قدرت طبیعت:\n• شیر: سلطان جنگل\n• ببر: نماد قدرت\n• فیل: حافظه قوی\n• پاندا: نماد صلح\n\nبیایید از آنها محافظت کنیم.",
+            ""  // متن خالی برای تست
         ];
         
         // اضافه کردن دکمه‌های متن نمونه
         const sampleButtons = document.createElement('div');
         sampleButtons.style.marginTop = '15px';
         sampleButtons.innerHTML = `
-            <p style="margin-bottom: 10px; color: #a0c8ff; font-size: 0.9rem;">متن‌های نمونه طبیعت و حیوانات:</p>
+            <p style="margin-bottom: 10px; color: #a0c8ff; font-size: 0.9rem;">متن‌های نمونه (متن اختیاری است):</p>
             <div style="display: flex; flex-wrap: wrap; gap: 8px;">
                 ${sampleTexts.map((text, index) => 
-                    `<button class="btn-secondary" style="padding: 6px 10px; font-size: 0.8rem; min-width: auto; border-radius: 8px;" onclick="document.getElementById('textInput').value = \`${text.replace(/\n/g, '\\n').replace(/`/g, '\\`')}\`">مثال ${index + 1}</button>`
+                    `<button class="btn-secondary" style="padding: 6px 10px; font-size: 0.8rem; min-width: auto; border-radius: 8px;" onclick="document.getElementById('textInput').value = \`${text.replace(/\n/g, '\\n').replace(/`/g, '\\`')}\`">${index === 3 ? 'بدون متن' : 'مثال ' + (index + 1)}</button>`
                 ).join('')}
             </div>
         `;
